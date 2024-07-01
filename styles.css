@@ -1,0 +1,163 @@
+#map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  #sidebar {
+    width: 350px;
+    background: #f8f8f8;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transition: transform 0.3s ease, width 0.3s ease;
+    transform: translateX(-100%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+  #sidebar.visible {
+    transform: translateX(0);
+  }
+  #sidebarToggle {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 20px;
+    height: 100px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    z-index: 2;
+    transition: left 0.3s ease;
+  }
+  #sidebarToggle.visible {
+    left: 350px;
+  }
+  #search {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+  }
+  #search input {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  #search button {
+    padding: 5px 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  #search button:hover {
+    background: #0056b3;
+  }
+  #buttonsContainer {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 2;
+  }
+  .round-button {
+    width: 70px;
+    height: 40px;
+    background-color: #c95353;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  .round-button:hover {
+    background-color: #f50404;
+  }
+  #legend {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    display: none;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+  .legend-item img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  #travelAlerts {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    display: none;
+  }
+  .alert-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  .alert-item img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  #budgetSidebar {
+    width: 350px;
+    height: 300px;
+    background: #f8f8f8;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 2;
+    display: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+  }
+  

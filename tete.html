@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Map with Sidebar</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAceqhgqco1E6Dw29YqfEY_hjDB4SXEwQ&callback=initMap"></script>
+</head>
+<body>
+  <div id="sidebar">
+    <h2>Country Information</h2>
+    <p id="countryInfo">Click on a country to display information here.</p>
+  </div>
+  <button id="sidebarToggle">Menu</button>
+  <div id="search">
+    <input type="text" id="searchInput" placeholder="Enter location">
+    <button id="searchButton">Search</button>
+  </div>
+  <div id="map"></div>
+  <div id="buttonsContainer">
+    <button class="round-button" onclick="showTravelAlerts()">Travel Alerts</button>
+    <button class="round-button" onclick="showMichelinMarkers()">Michelin</button>
+    <button class="round-button" onclick="showBudgetSidebar()">Budget</button>
+  </div>
+  <div id="legend">
+    <h3>Michelin</h3>
+    <div class="legend-item" onclick="filterMarkersByStar(3)">
+      <img src="image/michelin_red.png" alt="Red">
+      <span>3 star</span>
+    </div>
+    <div class="legend-item" onclick="filterMarkersByStar(2)">
+      <img src="image/michelin_yellow.png" alt="Yellow">
+      <span>2 star</span>
+    </div>
+    <div class="legend-item" onclick="filterMarkersByStar(1)">
+      <img src="image/michelin_green.png" alt="Green">
+      <span>1 star</span>
+    </div>
+  </div>
+  <div id="travelAlerts">
+    <h3>Travel Alerts</h3>
+    <div class="alert-item">
+      <img src="image/travel_alert_caution.png" alt="Caution">
+      <span>Caution</span>
+    </div>
+    <div class="alert-item">
+      <img src="image/travel_alert_warning.png" alt="Warning">
+      <span>Warning</span>
+    </div>
+    <div class="alert-item">
+      <img src="image/travel_alert_ban.png" alt="Ban">
+      <span>Ban</span>
+    </div>
+    <div class="alert-item">
+      <img src="image/no_entry.png" alt="No Entry">
+      <span>No Entry</span>
+    </div>
+  </div>
+  <div id="budgetSidebar">
+    <h3>Budget Information</h3>
+    <p>This is where the budget information will be displayed.</p>
+  </div>
+  <script src="mapScript.js"></script>
+</body>
+</html>
+
