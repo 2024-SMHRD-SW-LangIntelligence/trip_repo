@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>메뉴와 인터랙티브 지도</title>
+  <title>Interactive Map with Sidebar</title>
   <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAceqhgqco1E6Dw29YqfEY_hjDB4SXEwQ&callback=initMap"></script>
   <style>
     #map {
@@ -150,26 +150,42 @@
       height: 30px;
       margin-right: 10px;
     }
+    #budgetSidebar {
+      width: 350px;
+      height: 300px;
+      background: #f8f8f8;
+      border: 1px solid #ccc;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      z-index: 2;
+      display: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
   <div id="sidebar">
-    <h2>나라 정보</h2>
-    <p id="countryInfo">나라를 클릭하면 정보가 여기에 표시됩니다.</p>
+    <h2>Country Information</h2>
+    <p id="countryInfo">Click on a country to display information here.</p>
   </div>
-  <button id="sidebarToggle">오픈</button>
+  <button id="sidebarToggle">Menu</button>
   <div id="search">
-    <input type="text" id="searchInput" placeholder="검색할 위치 입력">
-    <button id="searchButton">검색</button>
+    <input type="text" id="searchInput" placeholder="Enter location">
+    <button id="searchButton">Search</button>
   </div>
   <div id="map"></div>
   <div id="buttonsContainer">
-    <button class="round-button" onclick="showTravelAlerts()">여행경보</button>
-    <button class="round-button" onclick="showMichelinMarkers()">미쉐린</button>
-    <button class="round-button" onclick="buttonAction('Button 3')">예산비용</button>
+    <button class="round-button" onclick="showTravelAlerts()">Travel Alerts</button>
+    <button class="round-button" onclick="showMichelinMarkers()">Michelin</button>
+    <button class="round-button" onclick="showBudgetSidebar()">Budget</button>
   </div>
   <div id="legend">
-    <h3>미쉐린</h3>
+    <h3>Michelin</h3>
     <div class="legend-item" onclick="filterMarkersByStar(3)">
       <img src="image/michelin_red.png" alt="Red">
       <span>3 star</span>
@@ -184,23 +200,27 @@
     </div>
   </div>
   <div id="travelAlerts">
-    <h3>여행 경고</h3>
+    <h3>Travel Alerts</h3>
     <div class="alert-item">
-      <img src="image\여행유의.png" alt="Caution">
-      <span>여행유의</span>
+      <img src="image/travel_alert_caution.png" alt="Caution">
+      <span>Caution</span>
     </div>
     <div class="alert-item">
-      <img src="image\여행자제.png" alt="Warning">
-      <span>여행자제</span>
+      <img src="image/travel_alert_warning.png" alt="Warning">
+      <span>Warning</span>
     </div>
     <div class="alert-item">
-      <img src="image\출국권고.png" alt="Ban">
-      <span>출국권고</span>
+      <img src="image/travel_alert_ban.png" alt="Ban">
+      <span>Ban</span>
     </div>
     <div class="alert-item">
-      <img src="image\여행경보4단계.png" alt="No Entry">
-      <span>여행금지</span>
+      <img src="image/travel_alert_no_entry.png" alt="No Entry">
+      <span>No Entry</span>
     </div>
+  </div>
+  <div id="budgetSidebar">
+    <h3>Budget Information</h3>
+    <p>This is where the budget information will be displayed.</p>
   </div>
   <script>
     let map;
@@ -226,7 +246,7 @@
       });
 
       map.data.addListener('click', function(event) {
-        const countryName = event.feature.getProperty('나라');
+        const countryName = event.feature.getProperty('name');
         showSidebarAndZoom(countryName);
         document.getElementById('countryInfo').innerText = countryName;
       });
@@ -247,7 +267,6 @@
         toggleSidebar();
       });
 
-      // 미쉐린 레스토랑 마커 정보 설정
       markers = [
         {
           name: 'Spondi',
@@ -264,7 +283,7 @@
           icon: getMarkerIcon('2')
         },
         {
-          name: '미쉐린 1스타',
+          name: '1 Star Restaurant',
           address: '1 Star Address',
           starCount: '1',
           position: { lat: 0, lng: 0 },
@@ -285,31 +304,23 @@
       if (sidebar.classList.contains('visible')) {
         mapElement.style.left = '350px';
         searchElement.style.left = '360px';
-        sidebarToggle.textContent = '닫기';
+        sidebarToggle.textContent = 'Close';
       } else {
         mapElement.style.left = '0';
         searchElement.style.left = '10px';
-        sidebarToggle.textContent = '메뉴';
+        sidebarToggle.textContent = 'Menu';
       }
     }
 
-    function showSidebarAndZoom(country) {
-      let found = false;
-      map.data.forEach(function(feature) {
-        if (feature.getProperty('나라') === country) {
-          const bounds = new google.maps.LatLngBounds();
-          feature.getGeometry().forEachLatLng(function(latlng) {
-            bounds.extend(latlng);
-          });
-          map.fitBounds(bounds);
-          found = true;
-          return;
+    function showSidebarAndZoom(location) {
+      geocoder.geocode({ 'address': location }, function(results, status) {
+        if (status === 'OK') {
+          map.setCenter(results[0].geometry.location);
+          map.setZoom(5);
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
         }
       });
-
-      if (!found) {
-        alert('GeoJSON 데이터에서 해당 국가를 찾을 수 없습니다: ' + country);
-      }
 
       if (!document.getElementById('sidebar').classList.contains('visible')) {
         toggleSidebar();
@@ -329,7 +340,7 @@
         });
 
         const infowindow = new google.maps.InfoWindow({
-          content: `<div><h2>${markerInfo.name}</h2><p>주소: ${markerInfo.address}</p><p>별점: ${markerInfo.starCount} star</p></div>`
+          content: `<div><h2>${markerInfo.name}</h2><p>Address: ${markerInfo.address}</p><p>Rating: ${markerInfo.starCount} star</p></div>`
         });
 
         marker.addListener('click', function() {
@@ -366,7 +377,7 @@
         });
 
         const infowindow = new google.maps.InfoWindow({
-          content: `<div><h2>${markerInfo.name}</h2><p>주소: ${markerInfo.address}</p><p>별점: ${markerInfo.starCount} star</p></div>`
+          content: `<div><h2>${markerInfo.name}</h2><p>Address: ${markerInfo.address}</p><p>Rating: ${markerInfo.starCount} star</p></div>`
         });
 
         marker.addListener('click', function() {
@@ -376,23 +387,15 @@
         michelinMarkers.push(marker);
       });
     }
-    // 왼쪽 사이드바 크기조정하는곳
+
     function showTravelAlerts() {
       const travelAlerts = document.getElementById('travelAlerts');
       travelAlerts.style.display = travelAlerts.style.display === 'block' ? 'none' : 'block';
-
-      const sidebar = document.getElementById('sidebar');
-      if (travelAlerts.style.display === 'block') {
-        sidebar.style.width = '500px';
-      } else {
-        sidebar.style.width = '350px';
-      }
     }
 
-    function buttonAction(buttonType) {
-      // 버튼 1과 버튼 3의 기능은 여기에 추가할 수 있습니다.
-      // 현재 버튼 1과 버튼 3은 아무 동작도 하지 않는 상태입니다.
-      // 추가적인 기능을 원하시면 해당 함수에 로직을 추가하면 됩니다.
+    function showBudgetSidebar() {
+      const budgetSidebar = document.getElementById('budgetSidebar');
+      budgetSidebar.style.display = budgetSidebar.style.display === 'block' ? 'none' : 'block';
     }
 
     function getMarkerIcon(starCount) {
@@ -408,14 +411,14 @@
           iconUrl = 'image/michelin_red.png';
           break;
         default:
-          iconUrl = 'image/michelin_green.png'; // 기본적으로 1스타 아이콘 사용
+          iconUrl = 'image/michelin_green.png';
           break;
       }
       return {
         url: iconUrl,
-        scaledSize: new google.maps.Size(32, 32), // 아이콘 크기 설정
+        scaledSize: new google.maps.Size(32, 32),
         origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(16, 16) // 아이콘의 기준점 설정
+        anchor: new google.maps.Point(16, 16)
       };
     }
   </script>
