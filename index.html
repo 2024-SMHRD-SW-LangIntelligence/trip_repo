@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>메뉴와 인터랙티브 지도</title>
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAceqhgqco1E6Dw29YqfEY_hjDB4SXEwQ&callback=initMap"></script>
+  <style>
+    #map {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    #sidebar {
+      width: 350px;
+      background: #f8f8f8;
+      border-right: 1px solid #ccc;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+      transform: translateX(-100%);
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+    #sidebar.visible {
+      transform: translateX(0);
+    }
+    #sidebarToggle {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 20px;
+      height: 100px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transform: translateY(-50%);
+      z-index: 2;
+      transition: left 0.3s ease;
+    }
+    #sidebarToggle.visible {
+      left: 350px;
+    }
+    #search {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+    #search input {
+      width: 200px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #search button {
+      padding: 5px 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    #search button:hover {
+      background: #0056b3;
+    }
+    #buttonsContainer {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 2;
+    }
+    .round-button {
+      width: 50px;
+      height: 50px;
+      background-color: #007bff;
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .round-button:hover {
+      background-color: #0056b3;
+    }
+    #legend {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+      display: none;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    .legend-item img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <h2>나라 정보</h2>
+    <p id="countryInfo">나라를 클릭하면 정보가 여기에 표시됩니다.</p>
+  </div>
+  <button id="sidebarToggle">메뉴</button>
+  <div id="search">
+    <input type="text" id="searchInput" placeholder="검색할 위치 입력">
+    <button id="searchButton">검색</button>
+  </div>
+  <div id="map"></div>
+  <div id="buttonsContainer">
+    <button class="round-button" onclick="buttonAction('Button 1')">1</button>
+    <button class="round-button" onclick="showMichelinMarkers()">2</button>
+    <button class="round-button" onclick="buttonAction('Button 3')">3</button>
+  </div>
+  <div id="legend">
+    <h3>미쉐린</h3>
+    <div class="legend-item" onclick="filterMarkersByStar(3)">
+      <img src="image/michelin_red.png" alt="Red">
+      <span>3 star</span>
+    </div>
+    <div class="legend-item" onclick="filterMarkersByStar(2)">
+      <img src="image/michelin_yellow.png" alt="Yellow">
+      <span>2 star</span>
+    </div>
+    <div class="legend-item" onclick="filterMarkersByStar(1)">
+      <img src="image/michelin_green.png" alt="Green">
+      <span>1 star</span>
+    </div>
+  </div>
+  <script>
+    let map;
+    let geocoder;
+    let michelinMarkers = [];
+    let markers = [];
+
+    function initMap() {
+      const mapOptions = {
+        center: { lat: 35.5, lng: 135.0 },
+        zoom: 3,
+      };
+
+      map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      geocoder = new google.maps.Geocoder();
+
+      map.data.loadGeoJson('World_Countries__Generalized_ (1).geojson', null, function() {
+        map.data.setStyle({
+          fillColor: 'gray',
+          strokeWeight: 0,
+          fillOpacity: 0
+        });
+      });
+
+      map.data.addListener('click', function(event) {
+        const countryName = event.feature.getProperty('나라');
+        showSidebarAndZoom(countryName);
+        document.getElementById('countryInfo').innerText = countryName;
+      });
+
+      document.getElementById('searchButton').addEventListener('click', () => {
+        const address = document.getElementById('searchInput').value;
+        showSidebarAndZoom(address);
+      });
+
+      document.getElementById('searchInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          document.getElementById('searchButton').click();
+        }
+      });
+
+      document.getElementById('sidebarToggle').addEventListener('click', () => {
+        toggleSidebar();
+      });
+
+      // 미쉐린 레스토랑 마커 정보 설정
+      markers = [
+        {
+          name: 'Spondi',
+          address: 'Athanasiou Diakou 18, Athina 117 43, Greece',
+          starCount: '1',
+          position: { lat: 37.9407, lng: 23.696 },
+          icon: getMarkerIcon('1')
+        },
+        {
+          name: 'Delta',
+          address: '1030 Delta Blvd, Atlanta, GA 30354, USA',
+          starCount: '2',
+          position: { lat: 33.6411, lng: -84.4269 },
+          icon: getMarkerIcon('2')
+        },
+        {
+          name: '미쉐린 1스타',
+          address: '1 Star Address',
+          starCount: '1',
+          position: { lat: 0, lng: 0 },
+          icon: getMarkerIcon('1')
+        },
+      ];
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const mapElement = document.getElementById('map');
+      const searchElement = document.getElementById('search');
+
+      sidebar.classList.toggle('visible');
+      sidebarToggle.classList.toggle('visible');
+      
+      if (sidebar.classList.contains('visible')) {
+        mapElement.style.left = '350px';
+        searchElement.style.left = '360px';
+        sidebarToggle.textContent = '닫기';
+      } else {
+        mapElement.style.left = '0';
+        searchElement.style.left = '10px';
+        sidebarToggle.textContent = '메뉴';
+      }
+    }
+
+    function showSidebarAndZoom(country) {
+      let found = false;
+      map.data.forEach(function(feature) {
+        if (feature.getProperty('나라') === country) {
+          const bounds = new google.maps.LatLngBounds();
+          feature.getGeometry().forEachLatLng(function(latlng) {
+            bounds.extend(latlng);
+          });
+          map.fitBounds(bounds);
+          found = true;
+          return;
+        }
+      });
+
+      if (!found) {
+        alert('GeoJSON 데이터에서 해당 국가를 찾을 수 없습니다: ' + country);
+      }
+
+      if (!document.getElementById('sidebar').classList.contains('visible')) {
+        toggleSidebar();
+      }
+    }
+
+    function showMichelinMarkers() {
+      clearMarkers();
+      michelinMarkers = [];
+
+      markers.forEach(function(markerInfo) {
+        const marker = new google.maps.Marker({
+          position: markerInfo.position,
+          map: map,
+          title: markerInfo.name,
+          icon: markerInfo.icon
+        });
+
+        const infowindow = new google.maps.InfoWindow({
+          content: `<div><h2>${markerInfo.name}</h2><p>주소: ${markerInfo.address}</p><p>별점: ${markerInfo.starCount} star</p></div>`
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+        michelinMarkers.push(marker);
+      });
+
+      const legend = document.getElementById('legend');
+      legend.style.display = 'block';
+    }
+
+    function clearMarkers() {
+      michelinMarkers.forEach(function(marker) {
+        marker.setMap(null);
+      });
+      michelinMarkers = [];
+    }
+
+    function filterMarkersByStar(starCount) {
+      clearMarkers();
+
+      const filteredMarkers = markers.filter(function(markerInfo) {
+        return parseInt(markerInfo.starCount) === starCount;
+      });
+
+      filteredMarkers.forEach(function(markerInfo) {
+        const marker = new google.maps.Marker({
+          position: markerInfo.position,
+          map: map,
+          title: markerInfo.name,
+          icon: markerInfo.icon
+        });
+
+        const infowindow = new google.maps.InfoWindow({
+          content: `<div><h2>${markerInfo.name}</h2><p>주소: ${markerInfo.address}</p><p>별점: ${markerInfo.starCount} star</p></div>`
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+        michelinMarkers.push(marker);
+      });
+    }
+
+    function buttonAction(buttonType) {
+      // 버튼 1과 버튼 3의 기능은 여기에 추가할 수 있습니다.
+      // 현재 버튼 1과 버튼 3은 아무 동작도 하지 않는 상태입니다.
+      // 추가적인 기능을 원하시면 해당 함수에 로직을 추가하면 됩니다.
+    }
+
+    function getMarkerIcon(starCount) {
+      let iconUrl = '';
+      switch (starCount) {
+        case '1':
+          iconUrl = 'image/michelin_green.png';
+          break;
+        case '2':
+          iconUrl = 'image/michelin_yellow.png';
+          break;
+        case '3':
+          iconUrl = 'image/michelin_red.png';
+          break;
+        default:
+          iconUrl = 'image/michelin_green.png'; // 기본적으로 1스타 아이콘 사용
+          break;
+      }
+      return {
+        url: iconUrl,
+        scaledSize: new google.maps.Size(32, 32), // 아이콘 크기 설정
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(16, 16) // 아이콘의 기준점 설정
+      };
+    }
+  </script>
+</body>
+</html>
