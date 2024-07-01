@@ -24,7 +24,7 @@
       padding: 20px;
       box-sizing: border-box;
       overflow-y: auto;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, width 0.3s ease;
       transform: translateX(-100%);
       position: absolute;
       left: 0;
@@ -92,9 +92,9 @@
       z-index: 2;
     }
     .round-button {
-      width: 50px;
-      height: 50px;
-      background-color: #007bff;
+      width: 70px;
+      height: 40px;
+      background-color: #c95353;
       border: none;
       border-radius: 50%;
       color: white;
@@ -105,7 +105,7 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     .round-button:hover {
-      background-color: #0056b3;
+      background-color: #f50404;
     }
     #legend {
       position: absolute;
@@ -129,6 +129,27 @@
       height: 20px;
       margin-right: 10px;
     }
+    #travelAlerts {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+      display: none;
+    }
+    .alert-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+    .alert-item img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
   </style>
 </head>
 <body>
@@ -143,9 +164,9 @@
   </div>
   <div id="map"></div>
   <div id="buttonsContainer">
-    <button class="round-button" onclick="buttonAction('Button 1')">1</button>
-    <button class="round-button" onclick="showMichelinMarkers()">2</button>
-    <button class="round-button" onclick="buttonAction('Button 3')">3</button>
+    <button class="round-button" onclick="showTravelAlerts()">여행경보</button>
+    <button class="round-button" onclick="showMichelinMarkers()">미쉐린</button>
+    <button class="round-button" onclick="buttonAction('Button 3')">예산비용</button>
   </div>
   <div id="legend">
     <h3>미쉐린</h3>
@@ -160,6 +181,25 @@
     <div class="legend-item" onclick="filterMarkersByStar(1)">
       <img src="image/michelin_green.png" alt="Green">
       <span>1 star</span>
+    </div>
+  </div>
+  <div id="travelAlerts">
+    <h3>여행 경고</h3>
+    <div class="alert-item">
+      <img src="image\여행유의.png" alt="Caution">
+      <span>여행유의</span>
+    </div>
+    <div class="alert-item">
+      <img src="image\여행자제.png" alt="Warning">
+      <span>여행자제</span>
+    </div>
+    <div class="alert-item">
+      <img src="image\출국권고.png" alt="Ban">
+      <span>출국권고</span>
+    </div>
+    <div class="alert-item">
+      <img src="image\여행금지.png" alt="No Entry">
+      <span>여행금지</span>
     </div>
   </div>
   <script>
@@ -335,6 +375,18 @@
 
         michelinMarkers.push(marker);
       });
+    }
+    // 왼쪽 사이드바 크기조정하는곳
+    function showTravelAlerts() {
+      const travelAlerts = document.getElementById('travelAlerts');
+      travelAlerts.style.display = travelAlerts.style.display === 'block' ? 'none' : 'block';
+
+      const sidebar = document.getElementById('sidebar');
+      if (travelAlerts.style.display === 'block') {
+        sidebar.style.width = '500px';
+      } else {
+        sidebar.style.width = '350px';
+      }
     }
 
     function buttonAction(buttonType) {
