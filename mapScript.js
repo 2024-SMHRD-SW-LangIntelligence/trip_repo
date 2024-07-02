@@ -15,7 +15,7 @@ function initMap() {
   geocoder = new google.maps.Geocoder();
 
   // GeoJson 데이터를 로드하고 스타일 설정
-  map.data.loadGeoJson('World_Countries__Generalized_.geojson', null, function() {
+  map.data.loadGeoJson('World_Countries__Generalized_ (1).geojson', null, function() {
     map.data.setStyle({
       fillColor: 'gray',
       strokeWeight: 0.5,
