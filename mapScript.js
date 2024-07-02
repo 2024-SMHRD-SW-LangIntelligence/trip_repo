@@ -15,7 +15,7 @@ function initMap() {
   geocoder = new google.maps.Geocoder();
 
   // GeoJson 데이터를 로드하고 스타일 설정
-  map.data.loadGeoJson('World_Countries__Generalized_ (1).geojson', null, function() {
+  map.data.loadGeoJson('World_Countries__Generalized_.geojson', null, function() {
     map.data.setStyle({
       fillColor: 'gray',
       strokeWeight: 0,
@@ -112,32 +112,40 @@ function showSidebarAndZoom(location) {
   }
 }
 
-// 미슐랭 마커를 보여주는 함수
+// 미슐랭 마커를 보여주고 사이드바를 숨기는 함수
 function showMichelinMarkers() {
-  clearMarkers();
-  michelinMarkers = [];
-
-  markers.forEach(function(markerInfo) {
-    const marker = new google.maps.Marker({
-      position: markerInfo.position,
-      map: map,
-      title: markerInfo.name,
-      icon: markerInfo.icon
-    });
-
-    const infowindow = new google.maps.InfoWindow({
-      content: `<div><h2>${markerInfo.name}</h2><p>Address: ${markerInfo.address}</p><p>Rating: ${markerInfo.starCount} star</p></div>`
-    });
-
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
-
-    michelinMarkers.push(marker);
-  });
-
   const legend = document.getElementById('legend');
-  legend.style.display = 'block';
+  legend.style.display = legend.style.display === 'block' ? 'none' : 'block';
+
+  if (legend.style.display === 'block') {
+    clearMarkers();
+    michelinMarkers = [];
+
+    markers.forEach(function(markerInfo) {
+      const marker = new google.maps.Marker({
+        position: markerInfo.position,
+        map: map,
+        title: markerInfo.name,
+        icon: markerInfo.icon
+      });
+
+      const infowindow = new google.maps.InfoWindow({
+        content: `<div><h2>${markerInfo.name}</h2><p>Address: ${markerInfo.address}</p><p>Rating: ${markerInfo.starCount} star</p></div>`
+      });
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+
+      michelinMarkers.push(marker);
+    });
+  } else {
+    clearMarkers();
+  }
+
+  // 우측 하단 사이드바를 숨김
+  document.getElementById('travelAlerts').style.display = 'none';
+  document.getElementById('budgetSidebar').style.display = 'none';
 }
 
 // 마커를 초기화하는 함수
