@@ -25,7 +25,7 @@ function initMap() {
 
   // GeoJson 데이터 클릭 이벤트 리스너 추가
   map.data.addListener('click', function(event) {
-    const countryName = event.feature.getProperty('name');
+    const countryName = event.feature.getProperty('나라');
     showSidebarAndZoom(countryName);
     document.getElementById('countryInfo').innerText = countryName;
   });
