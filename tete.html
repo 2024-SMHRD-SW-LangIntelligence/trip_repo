@@ -2,25 +2,33 @@
 <html>
 <head>
   <title>Interactive Map with Sidebar</title>
+  <!-- 스타일 시트 연결 -->
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <!-- Google Maps API 로드 -->
   <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAceqhgqco1E6Dw29YqfEY_hjDB4SXEwQ&callback=initMap"></script>
 </head>
 <body>
+  <!-- 사이드바: 선택한 국가의 정보를 표시 -->
   <div id="sidebar">
     <h2>Country Information</h2>
     <p id="countryInfo">Click on a country to display information here.</p>
   </div>
+  <!-- 사이드바 토글 버튼 -->
   <button id="sidebarToggle">Menu</button>
+  <!-- 검색 입력창과 버튼 -->
   <div id="search">
     <input type="text" id="searchInput" placeholder="Enter location">
     <button id="searchButton">Search</button>
   </div>
+  <!-- 지도 표시 영역 -->
   <div id="map"></div>
+  <!-- 추가 기능 버튼 컨테이너 -->
   <div id="buttonsContainer">
     <button class="round-button" onclick="showTravelAlerts()">Travel Alerts</button>
     <button class="round-button" onclick="showMichelinMarkers()">Michelin</button>
     <button class="round-button" onclick="showBudgetSidebar()">Budget</button>
   </div>
+  <!-- 미쉐린 레전드: 별 등급에 따른 마커 필터링 -->
   <div id="legend">
     <h3>Michelin</h3>
     <div class="legend-item" onclick="filterMarkersByStar(3)">
@@ -36,30 +44,34 @@
       <span>1 star</span>
     </div>
   </div>
+  <!-- 여행 경보 섹션 -->
   <div id="travelAlerts">
     <h3>Travel Alerts</h3>
     <div class="alert-item">
-      <img src="image/travel_alert_caution.png" alt="Caution">
+      <img src="image\1단계 남색경보.png" alt="Caution">
       <span>Caution</span>
     </div>
     <div class="alert-item">
-      <img src="image/travel_alert_warning.png" alt="Warning">
+      <img src="image\2단계 여행자제 .png" alt="Warning">
       <span>Warning</span>
     </div>
     <div class="alert-item">
-      <img src="image/travel_alert_ban.png" alt="Ban">
+      <img src="image\3단계 적색경보.png" alt="Ban">
       <span>Ban</span>
     </div>
     <div class="alert-item">
-      <img src="image/no_entry.png" alt="No Entry">
+      <img src="image\4단계 흑생경보.png" alt="No Entry">
       <span>No Entry</span>
     </div>
   </div>
+  <!-- 예산 정보 사이드바 -->
   <div id="budgetSidebar">
-    <h3>Budget Information</h3>
-    <p>This is where the budget information will be displayed.</p>
+    <h3>예산정보따라다다다다</h3>
+    <p>예산정보다</p>
   </div>
+  <!-- 외부 JavaScript 파일 로드 -->
   <script src="mapScript.js"></script>
 </body>
 </html>
+
 

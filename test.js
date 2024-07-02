@@ -73,6 +73,11 @@ function initMap() {
       icon: getMarkerIcon('1')
     },
   ];
+
+  // 미슐랭 사이드바 클릭 이벤트 리스너 추가
+  document.getElementById('michelinSidebarToggle').addEventListener('click', () => {
+    toggleMichelinSidebar();
+  });
 }
 
 // 사이드바 토글 함수
@@ -186,6 +191,12 @@ function showTravelAlerts() {
 function showBudgetSidebar() {
   const budgetSidebar = document.getElementById('budgetSidebar');
   budgetSidebar.style.display = budgetSidebar.style.display === 'block' ? 'none' : 'block';
+}
+
+// 미슐랭 사이드바를 토글하는 함수
+function toggleMichelinSidebar() {
+  const michelinSidebar = document.getElementById('michelinSidebar');
+  michelinSidebar.style.display = michelinSidebar.style.display === 'block' ? 'none' : 'block';
 }
 
 // 별점에 따라 마커 아이콘을 반환하는 함수
