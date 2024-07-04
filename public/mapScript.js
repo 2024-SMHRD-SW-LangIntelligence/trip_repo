@@ -27,12 +27,15 @@ function initMap() {
     const countryName = event.feature.getProperty('나라');
     showSidebarAndZoom(countryName);
     document.getElementById('countryInfo').innerText = countryName;
+    fetchCurrencyDataByCountry(countryName); // 통화 정보 가져오기
   });
 
   // 검색 버튼 클릭 이벤트 리스너 추가
   document.getElementById('searchButton').addEventListener('click', () => {
     const address = document.getElementById('searchInput').value;
     showSidebarAndZoom(address);
+    document.getElementById('countryInfo').innerText = address;
+    fetchCurrencyDataByCountry(address); // 통화 정보 가져오기
   });
 
   // 검색 입력 필드의 Enter 키 이벤트 리스너 추가
@@ -111,3 +114,5 @@ function loadGoogleMapsScript() {
 
 // 스크립트 로드 시작
 loadGoogleMapsScript();
+
+
