@@ -37,7 +37,7 @@ async function clobToString(clob) {
         });
         clob.on('end', () => {
             resolve(clobString);
-        });
+        }); 
         clob.on('error', err => {
             reject(err);
         });
@@ -131,26 +131,98 @@ app.get('/climates', async (req, res) => {
     }
 });
 
+app.get('/emergency', async (req, res) => {
+    try {
+        const climateQuery = 'SELECT * FROM t_emergency';
+        const climateData = await getDatadb(climateQuery);
+        res.json(climateData); // JSON 형식으로 데이터 전송
+    } catch (error) {
+        console.error('API 요청 처리 중 오류 발생:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/budget', async (req, res) => {
+    try {
+        const climateQuery = 'SELECT * FROM t_budget';
+        const climateData = await getDatadb(climateQuery);
+        res.json(climateData); // JSON 형식으로 데이터 전송
+    } catch (error) {
+        console.error('API 요청 처리 중 오류 발생:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/infection', async (req, res) => {
+    try {
+        const climateQuery = 'SELECT * FROM t_infection';
+        const climateData = await getDatadb(climateQuery);
+        res.json(climateData); // JSON 형식으로 데이터 전송
+    } catch (error) {
+        console.error('API 요청 처리 중 오류 발생:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/risk', async (req, res) => {
+    try {
+        const climateQuery = 'SELECT * FROM t_risk';
+        const climateData = await getDatadb(climateQuery);
+        res.json(climateData); // JSON 형식으로 데이터 전송
+    } catch (error) {
+        console.error('API 요청 처리 중 오류 발생:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+app.get('/visa', async (req, res) => {
+    try {
+        const climateQuery = 'SELECT * FROM t_visa';
+        const climateData = await getDatadb(climateQuery);
+        res.json(climateData); // JSON 형식으로 데이터 전송
+    } catch (error) {
+        console.error('API 요청 처리 중 오류 발생:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
 // 정적 파일 제공
 const publicPath = path.join(__dirname, 'public'); // public 디렉토리 경로 설정
 const imagePath = path.join(__dirname, 'image');
 app.use('/image', express.static(imagePath));
 app.use(express.static(publicPath));
 
-// 서버 시작
+
 app.listen(port, () => {
     console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
 
-    // 서버 시작 시 Python 스크립트 실행
-    exec('python c:/Users/SMHRD/Desktop/trip_repo/convert_currency.py', (error, stdout, stderr) => {
+    // Python 스크립트 실행 (상대 경로로 설정)
+    const convertCurrencyPath = path.resolve(__dirname, 'convert_currency.py');
+    const convertClimatePath = path.resolve(__dirname, 'convert_climate.py');
+
+    exec(`python ${convertCurrencyPath}`, (error, stdout, stderr) => {
         if (error) {
-            console.error(`Python 스크립트 실행 중 오류 발생: ${error.message}`);
+            console.error(`convert_currency.py 스크립트 실행 중 오류 발생: ${error.message}`);
             return;
         }
         if (stderr) {
-            console.error(`Python 스크립트 stderr: ${stderr}`);
+            console.error(`convert_currency.py 스크립트 stderr: ${stderr}`);
             return;
         }
-        console.log(`Python 스크립트 stdout: ${stdout}`);
+        console.log(`convert_currency.py 스크립트 stdout: ${stdout}`);
+    });
+
+    exec(`python ${convertClimatePath}`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`convert_climate.py 스크립트 실행 중 오류 발생: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.error(`convert_climate.py 스크립트 stderr: ${stderr}`);
+            return;
+        }
+        console.log(`convert_climate.py 스크립트 stdout: ${stdout}`);
     });
 });
