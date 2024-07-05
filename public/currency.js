@@ -11,7 +11,7 @@ const euroZoneCountries = [
 
 // Fetch currency data by country name
 function fetchCurrencyDataByCountry(countryName) {
-  fetch('http://localhost:3000/currencies')
+  fetch('/currencies')
     .then(response => {
       if (!response.ok) {
         throw new Error('네트워크 상태가 좋지 않습니다.');

@@ -185,6 +185,10 @@ html, body {
   display: none;
 }
 
+#travelAlerts.show{
+  display: block;
+}
+
 /* 여행 경보 아이템 스타일 */
 .alert-item {
   display: flex;
