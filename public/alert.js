@@ -1,5 +1,5 @@
 // 전역 변수
-let geoJsonStylesApplied = false; // 초기에는 스타일이 적용되지 않은 상태
+let geoJsonStylesApplied_alert = false; // 초기에는 스타일이 적용되지 않은 상태
 
 // DOMContentLoaded 이벤트를 사용해 페이지가 완전히 로드된 후 초기화 작업을 수행
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,13 +24,13 @@ function showTravelAlerts() {
 
   // 패널이 열렸을 때
   if (travelAlerts.classList.contains('show')) {
-    if (!geoJsonStylesApplied) {
+    if (!geoJsonStylesApplied_alert) {
       fetchRiskData(); // 데이터 가져오기 및 스타일 적용
-      geoJsonStylesApplied = true; // 스타일 적용 상태로 변경
+      geoJsonStylesApplied_alert = true; // 스타일 적용 상태로 변경
     }
   } else {
     resetGeoJsonStyles(); // 패널이 닫혔을 때 스타일 초기화
-    geoJsonStylesApplied = false; // 스타일 초기화 상태로 변경
+    geoJsonStylesApplied_alert = false; // 스타일 초기화 상태로 변경
   }
 }
 
@@ -49,7 +49,7 @@ function fetchRiskData() {
         // 데이터가 배열인 경우에만 처리
         displayRiskData(data);
         applyGeoJsonStyles(data);
-        geoJsonStylesApplied = true; // 스타일 적용 상태로 변경
+        geoJsonStylesApplied_alert = true; // 스타일 적용 상태로 변경
       } else {
         throw new Error('서버에서 받은 데이터 형식이 올바르지 않습니다.');
       }

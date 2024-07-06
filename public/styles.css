@@ -220,3 +220,36 @@ html, body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
 }
+
+
+/* 예산 경고 패널 스타일 */
+#budgetAlerts {
+  display: none;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#budgetAlerts.show {
+  display: block;
+}
+
+.alert-item {
+  margin-bottom: 10px;
+}
+
+/* 추가한 것 */
+.budget-info {
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+.image-button {
+  cursor: pointer;
+}
+
+.show {
+  display: block !important;
+}

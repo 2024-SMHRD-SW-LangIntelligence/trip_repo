@@ -9,8 +9,8 @@
   <!-- 스크립트 파일 로드 -->
   <script defer src="mapScript.js"></script>
   <script defer src="michelin.js"></script>
-  <script defer src="budget.js"></script>
   <script defer src="alert.js"></script>
+  <script defer src="budget.js"></script>
   <script defer src="currency.js"></script> <!-- 추가된 스크립트 파일 로드 -->
 </head>
 <body>
@@ -43,6 +43,7 @@
         <img src="image/예산비용아이콘.png" alt="예산">
         <span class="button-text">예산</span>
     </button>
+    
   </div>
   <!-- 미쉐린 레전드: 별 등급에 따른 마커 필터링 -->
   <div id="legend">
@@ -80,9 +81,27 @@
       <span>여행금지</span>
     </div>
   </div>
-  <div id="budgetSidebar">
-    <h3>예산정보따라다다다다</h3>
-    <p>예산정보다</p>
+
+<!-- 추가 -->
+  <div id = 'budgetSidebar' style = "display: none;">
+    <div class="alert-item">
+      <img src="image/1단계 남색경보.png" alt="Caution">
+      <span>1단계</span>
+    </div>
+    <div class="alert-item">
+      <img src="image/2단계 황색경보.png" alt="Warning">
+      <span>2단계</span>
+    </div>
+    <div class="alert-item">
+      <img src="image/3단계 적색경보.png" alt="Ban">
+      <span>3단계</span>
+    </div>
+    <div class="alert-item">
+      <img src="image/4단계 흑색경보.png" alt="No Entry">
+      <span>4단계</span>
+    </div>
   </div>
+  
+
 </body>
 </html>

@@ -22,9 +22,10 @@ function initMap() {
     });
   });
 
+
   // GeoJson 데이터 클릭 이벤트 리스너 추가
   map.data.addListener('click', function(event) {
-    const countryName = event.feature.getProperty('나라');
+    const countryName = event.feature.getProperty('나라');   // 나라에서 'ISO' 값으로 수정함
     showSidebarAndZoom(countryName);
     document.getElementById('countryInfo').innerText = countryName;
     fetchCurrencyDataByCountry(countryName); // 통화 정보 가져오기
