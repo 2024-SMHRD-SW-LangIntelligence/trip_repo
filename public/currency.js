@@ -37,11 +37,11 @@ function fetchCurrencyDataByCountry(countryName) {
 
 // 국가의 통화 데이터를 표시하는 함수
 function displayCurrencies(data) {
-  const sidebarContent = document.getElementById('sidebarContent');
-  sidebarContent.innerHTML = ''; // 기존 내용을 초기화
+  const sidebarcurrency = document.getElementById('sidebarcurrency');
+  sidebarcurrency.innerHTML = ''; // 기존 내용을 초기화
 
   if (data.length === 0) {
-    sidebarContent.innerHTML = '<p>해당 국가의 통화 정보를 찾을 수 없습니다.</p>';
+    sidebarcurrency.innerHTML = '<p>해당 국가의 통화 정보를 찾을 수 없습니다.</p>';
     return;
   }
 
@@ -56,10 +56,10 @@ function displayCurrencies(data) {
     currencyItem.className = 'currency-item';
     currencyItem.innerHTML = `
       <h3>${countryName}</h3>
-      <p>Currency Code: ${currencyCode}</p>
-      <p>Value: ${currencyValue}</p>
+      <p>통화코드: ${currencyCode}</p>
+      <p>가치: ${currencyValue}</p>
     `;
-    sidebarContent.appendChild(currencyItem);
+    sidebarcurrency.appendChild(currencyItem);
   });
 }
 

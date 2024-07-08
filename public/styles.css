@@ -1,175 +1,183 @@
 /* 지도 영역 스타일 */
 #map {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
+  height: 100%; /* 높이를 100%로 설정 */
+  width: 100%; /* 너비를 100%로 설정 */
+  position: absolute; /* 절대 위치로 설정 */
+  left: 0; /* 왼쪽을 0으로 설정 */
+  top: 0; /* 상단을 0으로 설정 */
 }
 
 /* HTML 및 body 요소 스타일 */
 html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  display: flex;
+  height: 100%; /* 높이를 100%로 설정 */
+  margin: 0; /* 여백을 0으로 설정 */
+  padding: 0; /* 패딩을 0으로 설정 */
+  display: flex; /* 플렉스 박스 사용 */
 }
 
 /* 사이드바 스타일 */
 #sidebar {
-  width: 350px;
-  background: #f8f8f8;
-  border-right: 1px solid #ccc;
-  padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  transition: transform 0.3s ease, width 0.3s ease;
-  transform: translateX(-100%);
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
+  width: 350px; /* 너비를 400px로 설정 */
+  background: #f8f8f8; /* 배경색 설정 */
+  border-right: 1px solid #ccc; /* 오른쪽 테두리 설정 */
+  padding: 20px; /* 패딩을 20px로 설정 */
+  box-sizing: border-box; /* 박스 크기 설정 */
+  overflow-y: auto; /* 세로 스크롤 사용 */
+  transition: transform 0.3s ease, width 0.3s ease; /* 트랜지션 설정 */
+  transform: translateX(-100%); /* 사이드바를 숨김 */
+  position: absolute; /* 절대 위치로 설정 */
+  left: 0; /* 왼쪽을 0으로 설정 */
+  top: 0; /* 상단을 0으로 설정 */
+  bottom: 0; /* 하단을 0으로 설정 */
+  z-index: 1; /* z-index 설정 */
+  font-family: Trebuchet MS, sans-serif; /* 글꼴 설정 */
+  font-size: 13px; /* 기본 글자 크기 설정 */
+  line-height: 1.0; /* 줄 간격 설정 */
+  color: #000000; /* 글자 색상 설정 */
 }
 
 /* 사이드바가 보일 때의 스타일 */
 #sidebar.visible {
-  transform: translateX(0);
+  transform: translateX(0); /* 사이드바를 표시 */
 }
 
 /* 사이드바 토글 버튼 스타일 */
 #sidebarToggle {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 20px;
-  height: 100px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transform: translateY(-50%);
-  z-index: 2;
-  transition: left 0.3s ease;
+  position: absolute; /* 절대 위치로 설정 */
+  top: 50%; /* 상단을 50%로 설정 */
+  left: 0; /* 왼쪽을 0으로 설정 */
+  width: 20px; /* 너비를 20px로 설정 */
+  height: 100px; /* 높이를 100px로 설정 */
+  background: #E07F3D; /* 배경색 설정 */
+  color: white; /* 글자 색상 설정 */
+  border: none; /* 테두리 없음 */
+  border-radius: 5px; /* 테두리 반경 설정 */
+  cursor: pointer; /* 커서 설정 */
+  transform: translateY(-50%); /* 세로 중앙 정렬 */
+  z-index: 2; /* z-index 설정 */
+  transition: left 0.3s ease; /* 트랜지션 설정 */
 }
 
 /* 사이드바 토글 버튼이 보일 때의 스타일 */
 #sidebarToggle.visible {
-  left: 350px;
+  left: 350px; /* 왼쪽을 350px로 설정 */
 }
 
 /* 검색 입력창과 버튼 스타일 */
 #search {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: white;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  z-index: 2;
+  position: absolute; /* 절대 위치로 설정 */
+  top: 10px; /* 상단을 10px로 설정 */
+  left: 10px; /* 왼쪽을 10px로 설정 */
+  background: 1px solid transparent;; /* 배경색 설정 */
+  padding: 10px; /* 패딩을 10px로 설정 */
+  border-radius: 5px; /* 테두리 반경 설정 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* 그림자 설정 */
+  z-index: 2; /* z-index 설정 */
 }
 
 /* 검색 입력 필드 스타일 */
 #search input {
-  width: 200px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 200px; /* 너비를 200px로 설정 */
+  padding: 5px; /* 패딩을 5px로 설정 */
+  border: 1px solid #ccc; /* 테두리 설정 */
+  border-radius: 5px; /* 테두리 반경 설정 */
+  font-family: Arial, sans-serif; /* 글꼴 설정 */
+  font-size: 14px; /* 입력 필드 글자 크기 설정 */
 }
 
 /* 검색 버튼 스타일 */
 #search button {
-  padding: 5px 10px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: 10px;
+  padding: 5px 10px; /* 패딩 설정 */
+  background: #E07F3D; /* 배경색 설정 */
+  color: white; /* 글자 색상 설정 */
+  border: none; /* 테두리 없음 */
+  border-radius: 5px; /* 테두리 반경 설정 */
+  cursor: pointer; /* 커서 설정 */
+  margin-left: 10px; /* 왼쪽 여백 설정 */
+  font-family: Arial, sans-serif; /* 글꼴 설정 */
+  font-size: 14px; /* 버튼 글자 크기 설정 */
 }
 
 /* 검색 버튼 호버 스타일 */
 #search button:hover {
-  background: #0056b3;
+  background: #0056b3; /* 배경색 설정 */
 }
 
 /* 추가 기능 버튼 컨테이너 스타일 */
 #buttonsContainer {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 2;
+  position: absolute; /* 절대 위치로 설정 */
+  top: 50%; /* 상단을 50%로 설정 */
+  right: 20px; /* 오른쪽을 20px로 설정 */
+  transform: translateY(-50%); /* 세로 중앙 정렬 */
+  display: flex; /* 플렉스 박스 사용 */
+  flex-direction: column; /* 플렉스 방향 설정 */
+  gap: 10px; /* 요소 간격 설정 */
+  z-index: 2; /* z-index 설정 */
 }
 
 .image-button {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
+  position: relative; /* 상대 위치로 설정 */
+  display: flex; /* 플렉스 박스 사용 */
+  align-items: center; /* 자식 요소 수직 중앙 정렬 */
+  justify-content: center; /* 자식 요소 가로 중앙 정렬 */
+  border: none; /* 테두리 없음 */
   background-color: transparent; /* 버튼 배경을 투명하게 설정 */
-  padding: 0;
-  cursor: pointer;
-  margin: 5px;
+  padding: 0; /* 패딩 없음 */
+  cursor: pointer; /* 커서 설정 */
+  margin: 5px; /* 마진 설정 */
 }
 
 .image-button img {
-  width: 50px;
-  height: 50px;
+  width: 50px; /* 너비를 50px로 설정 */
+  height: 50px; /* 높이를 50px로 설정 */
 }
 
 .button-text {
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  transition: opacity 0.3s;
-  white-space: nowrap;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  pointer-events: none;
+  position: absolute; /* 절대 위치로 설정 */
+  bottom: -20px; /* 하단을 -20px로 설정 */
+  left: 50%; /* 왼쪽을 50%로 설정 */
+  transform: translateX(-50%); /* 가로 중앙 정렬 */
+  opacity: 0; /* 투명도 설정 */
+  transition: opacity 0.3s; /* 투명도 트랜지션 설정 */
+  white-space: nowrap; /* 공백 처리를 하지 않도록 설정 */
+  background-color: rgba(0, 0, 0, 0.7); /* 배경색 설정 */
+  color: #fff; /* 글자 색상 설정 */
+  padding: 5px; /* 패딩 설정 */
+  border-radius: 5px; /* 테두리 반경 설정 */
+  pointer-events: none; /* 포인터 이벤트 없음 */
 }
 
 .image-button:hover .button-text {
-  opacity: 1;
+  opacity: 1; /* 투명도를 1로 설정하여 표시 */
 }
 
 
 /* 미쉐린 레전드 스타일 */
 #legend {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background: white;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  z-index: 2;
-  display: none;
+  position: absolute; /* 절대 위치로 설정 */
+  bottom: 20px; /* 하단을 20px로 설정 */
+  right: 20px; /* 오른쪽을 20px로 설정 */
+  background: white; /* 배경색 설정 */
+  padding: 10px; /* 패딩 설정 */
+  border-radius: 5px; /* 테두리 반경 설정 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* 그림자 설정 */
+  z-index: 2; /* z-index 설정 */
+  display: none; /* 표시 안함 */
 }
 
 /* 레전드 아이템 스타일 */
 .legend-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-  cursor: pointer;
+  display: flex; /* 플렉스 박스 사용 */
+  align-items: center; /* 자식 요소 수직 중앙 정렬 */
+  margin-bottom: 5px; /* 하단 여백 설정 */
+  cursor: pointer; /* 커서 설정 */
 }
 
 /* 레전드 아이템 이미지 스타일 */
 .legend-item img {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
+  width: 20px; /* 너비를 20px로 설정 */
+  height: 20px; /* 높이를 20px로 설정 */
+  margin-right: 10px; /* 오른쪽 여백 설정 */
 }
 
 /* 여행 경보 섹션 스타일 */
@@ -185,6 +193,7 @@ html, body {
   display: none;
 }
 
+/* 여행 경보 표시 */
 #travelAlerts.show{
   display: block;
 }
@@ -205,20 +214,20 @@ html, body {
 
 /* 예산 정보 사이드바 스타일 */
 #budgetSidebar {
-  width: 200px;
-  height: 250px;
-  background: #f8f8f8;
-  border: 1px solid #ccc;
-  padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  z-index: 2;
-  display: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
+  width: 200px; /* 너비를 350px로 설정 */
+  height: 250px; /* 높이를 300px로 설정 */
+  background: #f8f8f8; /* 배경색 설정 */
+  border: 1px solid #ccc; /* 테두리 설정 */
+  padding: 20px; /* 패딩 설정 */
+  box-sizing: border-box; /* 박스 크기 설정 */
+  overflow-y: auto; /* 세로 스크롤 사용 */
+  position: absolute; /* 절대 위치로 설정 */
+  bottom: 30px; /* 하단을 30px로 설정 */
+  right: 30px; /* 오른쪽을 30px로 설정 */
+  z-index: 2; /* z-index 설정 */
+  display: none; /* 표시 안함 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* 그림자 설정 */
+  border-radius: 5px; /* 테두리 반경 설정 */
 }
 
 
@@ -305,4 +314,47 @@ html, body {
 }
 #recommendationsSidebar {
   display: none;
+}
+
+/* 사이드바 내부의 국기 섹션 스타일 */
+#sidebarflag {
+  padding: 10px; /* 내부 여백을 추가하여 콘텐츠가 요소의 가장자리에 붙지 않도록 설정 */
+  border-bottom: 0px solid #ccc; /* 섹션을 구분하는 경계선을 추가하여 시각적으로 분리 */
+}
+
+/* 국기와 국가 이름을 담고 있는 요소 스타일 */
+.flag-item {
+  display: flex; /* 플렉스 박스를 사용하여 자식 요소들을 가로로 정렬 */
+  align-items: center; /* 자식 요소들을 수직 중앙에 정렬 */
+  margin-bottom: 10px; /* 각 국기 항목 간의 하단 여백을 추가하여 간격을 둠 */
+}
+
+/* 국기 이미지 스타일 */
+.flag-item img {
+  width: 80px; /* 이미지의 너비를 50픽셀로 고정 */
+  height: auto; /* 높이를 자동으로 설정하여 비율을 유지 */
+  margin-right: 10px; /* 이미지와 텍스트 사이에 오른쪽 여백을 추가 */
+  margin-left: 10px; /* 이미지와 텍스트 사이에 왼쪽 여백을 추가 */
+  border: 1px solid #ccc; /* 이미지에 회색 경계를 추가하여 시각적으로 구분 */
+  border-radius: 5px; /* 이미지 모서리를 둥글게 처리하여 부드러운 느낌을 줌 */
+}
+
+/* 국가 이름 텍스트 스타일 */
+.flag-item p {
+  margin: 0; /* 텍스트 요소의 기본 여백을 제거하여 다른 요소와의 간격을 줄임 */
+  font-size: 30px; /* 텍스트 크기를 16픽셀로 설정하여 가독성을 높임 */
+}
+
+/* 사이드바 내의 항목 스타일 */
+#sidebar .climate-item, #sidebar .country-item, #sidebar .currency-item {
+  font-family: Trebuchet MS, sans-serif; /* 글꼴 설정 */
+  font-size: 16px; /* 항목 글자 크기 설정 */
+}
+
+/* 사이드바 내의 제목 스타일 */
+#sidebar h3, #sidebar h4 {
+  font-family: Trebuchet MS, sans-serif; /* 글꼴 설정 */
+  font-size: 18px; /* 제목 글자 크기 설정 */
+  font-weight: bold; /* 제목 글자 굵기 설정 */
+  color: #007bff; /* 제목 글자 색상 설정 */
 }

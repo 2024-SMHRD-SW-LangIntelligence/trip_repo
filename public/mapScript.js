@@ -39,6 +39,33 @@ function initMap() {
     fetchCurrencyDataByCountry(address); // 통화 정보 가져오기
   });
 
+    // // GeoJson 데이터 클릭 이벤트 리스너 추가
+ map.data.addListener('click', function(event) {
+  const countryISO = event.feature.getProperty('ISO'); // 여기에 ISO 코드를 사용해야 함
+  showSidebarAndZoom(countryISO);
+  document.getElementById('countryInfo').innerText ;
+  fetchCountryDataByCountry(countryISO);
+  fetchClimateDataByCountry(countryISO);
+  fetchEmergencyDataByCountry(countryISO);
+  fetchInfectionDataByCountry(countryISO);
+  fetchVisaDataByCountry(countryISO);
+  displayCountryFlag(countryISO);
+});
+
+// 검색 버튼 클릭 이벤트 리스너 추가
+document.getElementById('searchButton').addEventListener('click', () => {
+  const isoCode = document.getElementById('searchInput').value;
+  showSidebarAndZoom(isoCode);
+  document.getElementById('countryInfo').innerText ;
+  fetchCountryDataByCountry(isoCode);
+  fetchClimateDataByCountry(isoCode);
+  fetchEmergencyDataByCountry(isoCode);
+  fetchInfectionDataByCountry(isoCode);
+  fetchVisaDataByCountry(isoCode);
+  displayCountryFlag(isoCode);
+ 
+});
+
   // 검색 입력 필드의 Enter 키 이벤트 리스너 추가
   document.getElementById('searchInput').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
