@@ -64,8 +64,9 @@ def get_weather_data(units='metric', lang='kr'):
     df['c_wind_speed'] = df['wind'].apply(lambda x: x['speed'])
     df['c_capital_name'] = df['name']
     
+    
     # 불필요한 열 삭제
-    df.drop(['coord', 'weather', 'main', 'visibility', 'wind', 'clouds', 'timezone', 'id', 'base', 'rain', 'dt', 'sys', 'cod', 'name'], axis=1, inplace=True)
+    df.drop(['coord', 'weather', 'main', 'visibility', 'wind', 'clouds', 'timezone', 'id', 'base', 'rain', 'dt', 'sys', 'cod', 'name', 'snow'], axis=1, inplace=True)
     
     df = df.reset_index()
     df.drop('c_capital_name', axis=1, inplace=True)
@@ -85,6 +86,13 @@ def get_weather_data(units='metric', lang='kr'):
                    "c_iso": "C_ISO"
                   }, inplace=True)
 
+    # Nassau의 ISO 코드를 'BS'로 변경
+    df.loc[df['c_capital_name'] == 'Nassau', 'C_ISO'] = 'BS'
+    df.loc[df['c_capital_name'] == 'Dublin', 'C_ISO'] = 'IE'
+    df.loc[df['c_capital_name'] == 'Rome', 'C_ISO'] = 'IT'
+    # 'San José' 행 삭제
+    df = df.drop(df[df['c_capital_name'] == 'San José'].index)
+    
     return df
 
 def insert_weather_data_to_db():
@@ -103,12 +111,12 @@ def insert_weather_data_to_db():
         # 데이터베이스에 삽입 (replace 모드로)
         df = get_weather_data()
         df.to_sql('t_climate', con=engine, if_exists='replace', index=False, dtype={
-            'C_ISO': VARCHAR(2000),
-            'C_CAPITAL_NAME': VARCHAR(2000),
+            'C_ISO': VARCHAR(20),
+            'C_CAPITAL_NAME': VARCHAR(200),
             'C_ABSOLUTE': TIMESTAMP(),
             'C_LONG': FLOAT,
             'C_LAT': FLOAT,
-            'C_WEATHER': VARCHAR(2000),
+            'C_WEATHER': VARCHAR(200),
             'C_TEMP': FLOAT,
             'C_FEELS': FLOAT,
             'C_MIN': FLOAT,

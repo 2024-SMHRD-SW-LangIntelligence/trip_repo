@@ -253,3 +253,10 @@ html, body {
 .show {
   display: block !important;
 }
+
+#recommendationSection {
+  display: none;
+}
+#recommendationsSidebar {
+  display: none;
+}

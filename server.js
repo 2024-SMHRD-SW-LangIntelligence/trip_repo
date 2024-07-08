@@ -1,6 +1,7 @@
 const express = require("express");
 const oracledb = require("oracledb");
 const path = require("path");
+const fs = require('fs');
 const { exec } = require('child_process');
 
 const app = express();
@@ -187,10 +188,75 @@ app.get('/visa', async (req, res) => {
     }
 });
 
+// JSON 형식의 본문을 파싱하기 위한 미들웨어
+app.use(express.json());
+
+// 국가명과 ISO 코드를 매핑하는 함수
+function getIsoCode(countryName) {
+    const data = fs.readFileSync('countries.csv', 'utf8');
+    const lines = data.split('\n');
+    for (const line of lines) {
+        const [name, iso] = line.split(',');
+        if (name.trim().toLowerCase() === countryName.trim().toLowerCase()) {
+            return iso.trim();
+        }
+    }
+    return null;
+}
+
+app.post('/recommend', (req, res) => {
+    const { country_name } = req.body;
+
+    if (!country_name) {
+        return res.status(400).json({ error: "Country name not provided" });
+    }
+
+    const iso_code = getIsoCode(country_name);
+    if (!iso_code) {
+        return res.status(400).json({ error: "Invalid country name" });
+    }
+
+    const recommendCountriesPath = path.resolve(__dirname, 'recommend_countries.py');
+
+    exec(`python ${recommendCountriesPath} ${iso_code}`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`recommend_countries.py 스크립트 실행 중 오류 발생: ${error.message}`);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        if (stderr) {
+            console.error(`recommend_countries.py 스크립트 stderr: ${stderr}`);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+
+        try {
+            const data = JSON.parse(stdout);
+            const recommendedCountries = data.recommended_countries.map(getCountryName);
+            res.json({ recommended_countries: recommendedCountries });
+        } catch (e) {
+            console.error('출력된 데이터 파싱 중 오류 발생:', e);
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    });
+});
+
+
+function getCountryName(isoCode) {
+    const data = fs.readFileSync('countries.csv', 'utf8');
+    const lines = data.split('\n');
+    for (const line of lines) {
+        const [name, iso] = line.split(',');
+        if (iso.trim().toLowerCase() === isoCode.trim().toLowerCase()) {
+            return name.trim();
+        }
+    }
+    return isoCode;
+}
+
 
 // 정적 파일 제공
 const publicPath = path.join(__dirname, 'public'); // public 디렉토리 경로 설정
 const imagePath = path.join(__dirname, 'image');
+
 app.use('/image', express.static(imagePath));
 app.use(express.static(publicPath));
 
@@ -201,6 +267,7 @@ app.listen(port, () => {
     // Python 스크립트 실행 (상대 경로로 설정)
     const convertCurrencyPath = path.resolve(__dirname, 'convert_currency.py');
     const convertClimatePath = path.resolve(__dirname, 'convert_climate.py');
+    const recommendCountriesPath = path.resolve(__dirname, 'recommend_countries.py'); // 새로 추가한 Python 스크립트 경로 추가
 
     exec(`python ${convertCurrencyPath}`, (error, stdout, stderr) => {
         if (error) {
@@ -224,5 +291,17 @@ app.listen(port, () => {
             return;
         }
         console.log(`convert_climate.py 스크립트 stdout: ${stdout}`);
+    });
+
+    exec(`python ${recommendCountriesPath}`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`recommend_countries.py 스크립트 실행 중 오류 발생: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.error(`recommend_countries.py 스크립트 stderr: ${stderr}`);
+            return;
+        }
+        console.log(`recommend_countries.py stdout: ${stdout}`);
     });
 });
