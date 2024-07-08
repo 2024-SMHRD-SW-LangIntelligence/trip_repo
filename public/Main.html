@@ -20,7 +20,7 @@
     <!-- 사이드바: 선택한 국가의 정보를 표시 -->
     <div id="sidebar" class="visible">
       <h2>나라정보</h2>
-      <p id="countryInfo">얍얍얍</p>
+      <p id="countryInfo"></p>
       <div id="sidebarContent"></div> <!-- 통화 정보를 표시할 영역 추가 -->
     </div>
     <!-- 사이드바 토글 버튼 -->
@@ -88,24 +88,14 @@
         <span>여행금지</span>
       </div>
     </div>
-
-  <!-- 추가 -->
-    <div id = 'budgetSidebar' style = "display: none;">
-      <div class="alert-item">
-        <img src="image/1단계 남색경보.png" alt="Caution">
-        <span>1단계</span>
-      </div>
-      <div class="alert-item">
-        <img src="image/2단계 황색경보.png" alt="Warning">
-        <span>2단계</span>
-      </div>
-      <div class="alert-item">
-        <img src="image/3단계 적색경보.png" alt="Ban">
-        <span>3단계</span>
-      </div>
-      <div class="alert-item">
-        <img src="image/4단계 흑색경보.png" alt="No Entry">
-        <span>4단계</span>
+      <!-- 예산 섹션 -->
+    <div id="budgetSidebar" >
+      <h3>예산</h3>
+      <div class="budget-graph">
+        <div class="bar bar-low" onclick="filterTravelByBudget('Low')">0~50($)</div>
+        <div class="bar bar-medium" onclick="filterTravelByBudget('Medium')">50~75($)</div>
+        <div class="bar bar-high" onclick="filterTravelByBudget('High')">75~100($)</div>
+        <div class="bar bar-very-high" onclick="filterTravelByBudget('Very High')">100~200($)</div>
       </div>
     </div>
     

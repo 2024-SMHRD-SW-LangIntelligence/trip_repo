@@ -205,8 +205,8 @@ html, body {
 
 /* 예산 정보 사이드바 스타일 */
 #budgetSidebar {
-  width: 350px;
-  height: 300px;
+  width: 200px;
+  height: 250px;
   background: #f8f8f8;
   border: 1px solid #ccc;
   padding: 20px;
@@ -238,12 +238,58 @@ html, body {
   margin-bottom: 10px;
 }
 
-/* 추가한 것 */
 .budget-info {
   margin-bottom: 10px;
   padding: 5px;
   background-color: white;
   border: 1px solid #ccc;
+}
+
+/* 예산 별로 바 그래프 스타일 */
+.budget-graph {
+  margin-top: 20px;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.bar-fill {
+  height: 20px;
+  background-color: lightgray; /* 기본 바 색상 */
+  transition: width 0.3s ease-in-out;
+}
+
+.bar span {
+  margin-left: 10px;
+}
+
+/* 각 바의 색상 및 너비 설정 */
+.bar-low {
+  background-color: palegreen; /* Low 예산 바 색상 */
+  width: 100%; /* Low 예산 비율 */
+  opacity: 0.7;
+}
+
+.bar-medium {
+  background-color: chartreuse; /* Medium 예산 바 색상 */
+  width: 100%; /* Medium 예산 비율 */
+  opacity: 0.7;
+}
+
+.bar-high {
+  background-color: mediumseagreen; /* High 예산 바 색상 */
+  width: 100%; /* High 예산 비율 */
+  opacity: 0.7;
+}
+
+.bar-very-high {
+  background-color: green; /* Very High 예산 바 색상 */
+  width: 100%; /* Very High 예산 비율 */
+  opacity: 0.7;
 }
 
 .image-button {
