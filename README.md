@@ -13,7 +13,8 @@
   ▪ 해외 안전 여행 정보의 체계적 제공
   ‘안전한 여행’이라는 대주제를 포함한, 여행 전 과정에 필요한 정보를 종합적으로 제공
   ### 개발 내용
-  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/8ca0dac8-bb67-4c4e-a408-03f2604a38df)
+  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/8d47e227-1dd8-46ab-ad66-ae0858f8efea)
+
 
 # 3. 개발환경
   ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/8f072c57-f004-47ec-bc0e-4e4c63874e13)
