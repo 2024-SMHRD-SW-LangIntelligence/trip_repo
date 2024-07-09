@@ -2,6 +2,8 @@ import requests
 import pandas as pd
 from sqlalchemy import create_engine
 from datetime import datetime, timedelta
+import urllib3
+urllib3.disable_warnings()
 
 def is_weekday(date):
     # 날짜가 평일인지 확인 (월요일=0, 일요일=6)
@@ -87,6 +89,6 @@ def fetch_exchange_data(date):
     df.to_sql(table_name, con=engine, if_exists='replace', index=False)
 
     print(f"데이터가 '{table_name}' 테이블에 성공적으로 삽입되었습니다.")
-
+    
 # 함수 호출 예시
 fetch_exchange_data(datetime.now())

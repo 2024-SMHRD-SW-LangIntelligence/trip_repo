@@ -1,122 +1,122 @@
-  <!DOCTYPE html>
-  <html lan = 'en'>
-  <head>
-    <meta charset = "UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Map with Sidebar</title>
-    <!-- 스타일 시트 연결 -->
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <!-- Google Maps API 로드 -->
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAceqhgqco1E6Dw29YqfEY_hjDB4SXEwQ&callback=initializeMap"></script>
-    <!-- 스크립트 파일 로드 -->
-    <script defer src="mapScript.js"></script>
-    <script defer src="michelin.js"></script>
-    <script defer src="alert.js"></script>
-    <script defer src="budget.js"></script>
-    <script defer src="currency.js"></script> <!-- 추가된 스크립트 파일 로드 -->
-    <script defer src="recommend.js"></script>
-    <script defer src="climate.js"></script>
-    <script defer src="country.js"></script>
-    <script defer src="emergency.js"></script>
-    <script defer src="infection.js"></script>
-    <script defer src="visa.js"></script>
-    <script defer src="flag.js"></script>
-  </head>
-  <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Map with Sidebar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAceqhgqco1E6Dw29YqfEY_hjDB4SXEwQ&callback=initializeMap"></script>
+  <script defer src="mapScript.js"></script>
+  <script defer src="michelin.js"></script>
+  <script defer src="alert.js"></script>
+  <script defer src="budget.js"></script>
+  <script defer src="currency.js"></script> 
+  <script defer src="recommend.js"></script>
+  <script defer src="climate.js"></script>
+  <script defer src="country.js"></script>
+  <script defer src="emergency.js"></script>
+  <script defer src="infection.js"></script>
+  <script defer src="visa.js"></script>
+  <script defer src="flag.js"></script>
+</head>
+<body>
+  <!-- 로고 이미지 추가 -->
+  <header id="header">
+    <img src="image\여정 로고.png" alt="로고 이미지" id="logo">
+  </header>
   <!-- 사이드바: 선택한 국가의 정보를 표시 -->
   <div id="sidebar" class="visible">
     <h2 id="countryName"></h2>
     <h1 id="countryInfo"></h1>
     <div id="sidebarflag"></div>
     <div id="sidebarcountry"></div>
-    <div id="sidebarcurrency"></div>
+    <div id="sidebarcurrency"></div>      
     <div id="sidebarclimate"></div>
     <div id="sidebarinfection"></div>
     <div id="sidebarvisa"></div>
-    <div id="sidebaremergency"></div>
+    <div id="sidebaremergency"></div>   
   </div>
-    <!-- 사이드바 토글 버튼 -->
-    <button id="sidebarToggle" onclick="toggleSidebar()">메뉴</button>
-    <!-- 검색 입력창과 버튼 -->
-    <div id="search">
-      <input type="text" id="searchInput" placeholder="나라를 입력하세요.">
-      <button id="searchButton">검색</button>
+  <!-- 사이드바 토글 버튼 -->
+  <button id="sidebarToggle" onclick="toggleSidebar()">메뉴</button>
+  <!-- 검색 입력창과 버튼 -->
+  <div id="search">
+    <input type="text" id="searchInput" placeholder="나라를 입력하세요.">
+    <button id="searchButton">검색</button>
+  </div>
+  <!-- 지도 표시 영역 -->
+  <div id="map"></div>
+  <!-- 추가 기능 버튼 컨테이너 -->
+  <div id="buttonsContainer">
+    <button class="image-button" onclick="showTravelAlerts()">
+      <img src="image/싸이렌아이콘.png" alt="여행경보">
+      <span class="button-text">여행경보</span>
+    </button>
+    <button class="image-button" onclick="fetchMichelinData()">
+      <img src="image/michelin_icon.png" alt="미쉐린">
+      <span class="button-text">미쉐린</span>
+    </button>
+    <button class="image-button" onclick="showBudgetSidebar()">
+      <img src="image/예산비용아이콘.png" alt="예산">
+      <span class="button-text">예산</span>
+    </button>
+    <button class="image-button" onclick="toggleRecommendInput()">
+      <img src="image/recommend.png" alt="추천">
+      <span class="button-text">추천</span>
+    </button>
+  </div>
+  <!-- 미쉐린 레전드: 별 등급에 따른 마커 필터링 -->
+  <div id="legend">
+    <h3>미쉐린</h3>
+    <div class="legend-item" onclick="filterMarkersByStar(3)">
+      <img src="image/michelin_red.png" alt="Red">
+      <span>3 star</span>
     </div>
-    <!-- 지도 표시 영역 -->
-    <div id="map"></div>
-    <!-- 추가 기능 버튼 컨테이너 -->
-    <div id="buttonsContainer">
-      <button class="image-button" onclick="showTravelAlerts()">
-          <img src="image/싸이렌아이콘.png" alt="여행경보">
-          <span class="button-text">여행경보</span>
-      </button>
-      <button class="image-button" onclick="fetchMichelinData()">
-          <img src="image/michelin_icon.png" alt="미쉐린">
-          <span class="button-text">미쉐린</span>
-      </button>
-      <button class="image-button" onclick="showBudgetSidebar()">
-          <img src="image/예산비용아이콘.png" alt="예산">
-          <span class="button-text">예산</span>
-      </button>
-      <button class="image-button" onclick="toggleRecommendInput()">
-        <img src="image/recommend.png" alt="추천">
-        <span class="button-text">추천</span>
-      </button>
-      
+    <div class="legend-item" onclick="filterMarkersByStar(2)">
+      <img src="image/michelin_yellow.png" alt="Yellow">
+      <span>2 star</span>
     </div>
-    <!-- 미쉐린 레전드: 별 등급에 따른 마커 필터링 -->
-    <div id="legend">
-      <h3>미쉐린</h3>
-      <div class="legend-item" onclick="filterMarkersByStar(3)">
-        <img src="image/michelin_red.png" alt="Red">
-        <span>3 star</span>
-      </div>
-      <div class="legend-item" onclick="filterMarkersByStar(2)">
-        <img src="image/michelin_yellow.png" alt="Yellow">
-        <span>2 star</span>
-      </div>
-      <div class="legend-item" onclick="filterMarkersByStar(1)">
-        <img src="image/michelin_green.png" alt="Green">
-        <span>1 star</span>
-      </div>
+    <div class="legend-item" onclick="filterMarkersByStar(1)">
+      <img src="image/michelin_green.png" alt="Green">
+      <span>1 star</span>
     </div>
-    <!-- 여행 경보 섹션 -->
-    <div id="travelAlerts" style="display: none;">
-      <h3>여행 경보</h3>
-      <div class="alert-item">
-        <img src="image/1단계 남색경보.png" alt="Caution">
-        <span>여행유의</span>
-      </div>
-      <div class="alert-item">
-        <img src="image/2단계 황색경보.png" alt="Warning">
-        <span>여행자제</span>
-      </div>
-      <div class="alert-item">
-        <img src="image/3단계 적색경보.png" alt="Ban">
-        <span>출국권고</span>
-      </div>
-      <div class="alert-item">
-        <img src="image/4단계 흑색경보.png" alt="No Entry">
-        <span>여행금지</span>
-      </div>
+  </div>
+  <!-- 여행 경보 섹션 -->
+  <div id="travelAlerts" style="display: none;">
+    <h3>여행 경보</h3>
+    <div class="alert-item">
+      <img src="image/1단계 남색경보.png" alt="Caution">
+      <span>여행유의</span>
     </div>
-      <!-- 예산 섹션 -->
-    <div id="budgetSidebar" >
-      <h3>예산</h3>
-      <div class="budget-graph">
-        <div class="bar bar-low" onclick="filterTravelByBudget('Low')">0~50($)</div>
-        <div class="bar bar-medium" onclick="filterTravelByBudget('Medium')">50~75($)</div>
-        <div class="bar bar-high" onclick="filterTravelByBudget('High')">75~100($)</div>
-        <div class="bar bar-very-high" onclick="filterTravelByBudget('Very High')">100~200($)</div>
-      </div>
+    <div class="alert-item">
+      <img src="image/2단계 황색경보.png" alt="Warning">
+      <span>여행자제</span>
     </div>
-    
-    <div id="recommendForm" style="display: none;">
-      <form id="recommendationForm" onsubmit="submitRecommendation(event)">
-        <label for="recommendationInput">추천:</label>
-        <input type="text" id="recommendationInput" name="recommendationInput">
-        <button type="submit">확인</button>
-      </form>
+    <div class="alert-item">
+      <img src="image/3단계 적색경보.png" alt="Ban">
+      <span>출국권고</span>
     </div>
+    <div class="alert-item">
+      <img src="image/4단계 흑색경보.png" alt="No Entry">
+      <span>여행금지</span>
+    </div>
+  </div>
+  <!-- 예산 섹션 -->
+  <div id="budgetSidebar">
+    <h3>예산</h3>
+    <div class="budget-graph">
+      <div class="bar bar-low" onclick="filterTravelByBudget('Low')">0~50($)</div>
+      <div class="bar bar-medium" onclick="filterTravelByBudget('Medium')">50~75($)</div>
+      <div class="bar bar-high" onclick="filterTravelByBudget('High')">75~100($)</div>
+      <div class="bar bar-very-high" onclick="filterTravelByBudget('Very High')">100~200($)</div>
+    </div>
+  </div>
+  <div id="recommendForm" style="display: none;">
+    <form id="recommendationForm" onsubmit="submitRecommendation(event)">
+      <label for="recommendationInput">추천:</label>
+      <input type="text" id="recommendationInput" name="recommendationInput">
+      <button type="submit">확인</button>
+    </form>
+  </div>
 </body>
 </html>
