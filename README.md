@@ -1,5 +1,5 @@
-![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/05b1b103-c294-438e-9a83-56f85b6e543e)# 여정 / 팀명 : 워라벨(Work Life Balance)
-  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/5159bace-9067-4eed-a88e-d9a6d46b16e6)
+# 여정 / 팀명 : 워라벨(Work Life Balance)
+![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/5159bace-9067-4eed-a88e-d9a6d46b16e6)
 
 
 # 1. 프로젝트 개요
