@@ -40,8 +40,9 @@ function initMap() {
 // 지도 클릭 이벤트 핸들러
 function handleMapClick(event) {
   const countryISO = event.feature.getProperty('ISO');
+  const countryName = event.feature.getProperty('나라');
   console.log(`Map clicked: ISO code is ${countryISO}`);
-  updateSidebarAndFetchData(countryISO);
+  updateSidebarAndFetchData(countryISO,countryName);
 }
 
 // 검색 버튼 클릭 이벤트 핸들러
@@ -142,6 +143,7 @@ function updateSidebarAndFetchData(isoCode, countryName) {
   showSidebarAndZoom(isoCode);
   document.getElementById('countryInfo').innerText = countryName;
   fetchCountryDataByCountry(isoCode);
+  fetchCurrencyDataByCountry(countryName);
   fetchClimateDataByCountry(isoCode);
   fetchEmergencyDataByCountry(isoCode);
   fetchInfectionDataByCountry(isoCode);

@@ -99,21 +99,6 @@
     });
   }
 
-
-// 예산 레전드 클릭 시 해당 가격대의 여행만 필터링하는 함수
-function filterTravelByBudget(costLevel) {
-  map.data.forEach(feature => {
-    const country = feature.getProperty('ISO'); // GeoJSON의 국가 코드 속성 이름
-    const featureCostLevel = costLevels[country]; // 국가 코드를 기반으로 예산 데이터에서 비용 수준 가져오기
-
-    if (featureCostLevel === costLevel) {
-      feature.setVisible(true); // 해당 가격대에 해당하는 여행을 보이도록 설정
-    } else {
-      feature.setVisible(false); // 해당 가격대가 아닌 여행은 숨기도록 설정
-    }
-  });
-}
-
   // DOMContentLoaded 이벤트 핸들러
   document.addEventListener('DOMContentLoaded', () => {
     const budgetButton = document.querySelector('.budget-button');
