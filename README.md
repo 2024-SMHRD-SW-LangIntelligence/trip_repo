@@ -1,5 +1,6 @@
 # 여정 / 팀명 : 워라벨(Work Life Balance)
-![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/5141fd32-0a70-4db6-a4be-46c29084ea79)
+![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/a2e9927a-8795-4534-8650-293a8483611a)
+
 
 
 # 1. 프로젝트 개요
