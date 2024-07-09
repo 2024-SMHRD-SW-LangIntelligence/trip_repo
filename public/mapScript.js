@@ -22,57 +22,45 @@ function initMap() {
     });
   });
 
-
   // GeoJson 데이터 클릭 이벤트 리스너 추가
-  map.data.addListener('click', function(event) {
-    const countryName = event.feature.getProperty('나라');   // 나라에서 'ISO' 값으로 수정함
-    showSidebarAndZoom(countryName);
-    document.getElementById('countryInfo').innerText = countryName;
-    fetchCurrencyDataByCountry(countryName); // 통화 정보 가져오기
-  });
+  map.data.addListener('click', handleMapClick);
 
   // 검색 버튼 클릭 이벤트 리스너 추가
-  document.getElementById('searchButton').addEventListener('click', () => {
-    const address = document.getElementById('searchInput').value;
-    showSidebarAndZoom(address);
-    document.getElementById('countryInfo').innerText = address;
-    fetchCurrencyDataByCountry(address); // 통화 정보 가져오기
-  });
-
-    // // GeoJson 데이터 클릭 이벤트 리스너 추가
- map.data.addListener('click', function(event) {
-  const countryISO = event.feature.getProperty('ISO'); // 여기에 ISO 코드를 사용해야 함
-  showSidebarAndZoom(countryISO);
-  document.getElementById('countryInfo').innerText ;
-  fetchCountryDataByCountry(countryISO);
-  fetchClimateDataByCountry(countryISO);
-  fetchEmergencyDataByCountry(countryISO);
-  fetchInfectionDataByCountry(countryISO);
-  fetchVisaDataByCountry(countryISO);
-  displayCountryFlag(countryISO);
-});
-
-// 검색 버튼 클릭 이벤트 리스너 추가
-document.getElementById('searchButton').addEventListener('click', () => {
-  const isoCode = document.getElementById('searchInput').value;
-  showSidebarAndZoom(isoCode);
-  document.getElementById('countryInfo').innerText ;
-  fetchCountryDataByCountry(isoCode);
-  fetchClimateDataByCountry(isoCode);
-  fetchEmergencyDataByCountry(isoCode);
-  fetchInfectionDataByCountry(isoCode);
-  fetchVisaDataByCountry(isoCode);
-  displayCountryFlag(isoCode);
- 
-});
+  document.getElementById('searchButton').addEventListener('click', handleSearch);
 
   // 검색 입력 필드의 Enter 키 이벤트 리스너 추가
   document.getElementById('searchInput').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
       event.preventDefault();
-      document.getElementById('searchButton').click();
+      handleSearch();
     }
   });
+}
+
+// 지도 클릭 이벤트 핸들러
+function handleMapClick(event) {
+  const countryISO = event.feature.getProperty('ISO');
+  console.log(`Map clicked: ISO code is ${countryISO}`);
+  updateSidebarAndFetchData(countryISO);
+}
+
+// 검색 버튼 클릭 이벤트 핸들러
+function handleSearch() {
+  const input = document.getElementById('searchInput').value.trim();
+  const isoCode = findISOCodeByCountryName(input);
+  if (isoCode) {
+    console.log(`Search initiated: ISO code is ${isoCode}`);
+    fetchCountryNameByISO(isoCode, function(countryName) {
+      if (countryName) {
+        console.log(`Country found: ${countryName}`);
+        updateSidebarAndFetchData(isoCode, countryName);
+      } else {
+        alert('해당 나라가 없거나 없는 데이터입니다.');
+      }
+    });
+  } else {
+    alert(`"${input}"는 없는 나라입니다.`);
+  }
 }
 
 // 사이드바 토글 함수
@@ -109,21 +97,56 @@ document.addEventListener('DOMContentLoaded', function() {
   sidebarToggle.textContent = '메뉴';
 });
 
-
 // 사이드바를 보여주고 위치로 줌인하는 함수
-function showSidebarAndZoom(location) {
-  geocoder.geocode({ 'address': location }, function(results, status) {
-    if (status === 'OK') {
-      map.setCenter(results[0].geometry.location);
-      map.setZoom(5);
-    } else {
-      alert('지오코딩에 실패했습니다. 이유: ' + status);
+function showSidebarAndZoom(isoCode, countryName) {
+  map.data.forEach(function(feature) {
+    if (feature.getProperty('ISO') === isoCode) {
+      const bounds = new google.maps.LatLngBounds();
+      feature.getGeometry().forEachLatLng(function(latlng) {
+        bounds.extend(latlng);
+      });
+      map.fitBounds(bounds);
+      toggleSidebar();
+      document.getElementById('countryInfo').innerText = countryName;
     }
   });
+}
 
-  if (!document.getElementById('sidebar').classList.contains('visible')) {
-    toggleSidebar();
-  }
+// ISO 코드를 통해 국가 이름을 가져오는 함수
+function fetchCountryNameByISO(isoCode, callback) {
+  let found = false;
+  map.data.forEach(function(feature) {
+    if (feature.getProperty('ISO') === isoCode) {
+      const countryName = feature.getProperty('나라');
+      callback(countryName);
+      found = true;
+    }
+  });
+  if (!found) callback(null);
+}
+
+// ISO 코드를 통해 국가명을 찾는 함수
+function findISOCodeByCountryName(countryName) {
+  let isoCode = null;
+  map.data.forEach(function(feature) {
+    const name = feature.getProperty('나라');
+    if (name === countryName) {
+      isoCode = feature.getProperty('ISO');
+    }
+  });
+  return isoCode;
+}
+
+// 데이터 갱신 및 사이드바 업데이트 함수
+function updateSidebarAndFetchData(isoCode, countryName) {
+  showSidebarAndZoom(isoCode);
+  document.getElementById('countryInfo').innerText = countryName;
+  fetchCountryDataByCountry(isoCode);
+  fetchClimateDataByCountry(isoCode);
+  fetchEmergencyDataByCountry(isoCode);
+  fetchInfectionDataByCountry(isoCode);
+  fetchVisaDataByCountry(isoCode);
+  displayCountryFlag(isoCode);
 }
 
 // Google Maps API 초기화 및 지도 생성
@@ -142,5 +165,3 @@ function loadGoogleMapsScript() {
 
 // 스크립트 로드 시작
 loadGoogleMapsScript();
-
-

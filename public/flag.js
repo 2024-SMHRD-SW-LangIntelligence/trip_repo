@@ -242,9 +242,7 @@ function searchCountry() {
     if (country) {
         displayCountryFlag(country.isoCode);
         // 추가로 국가 정보를 사이드바에 표시하려면 여기에 추가
-    } else {
-        alert('해당 국가를 찾을 수 없습니다.');
-    }
+    } 
 }
 
 // 페이지 로드 시 검색 버튼에 이벤트 리스너 추가
