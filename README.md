@@ -50,26 +50,26 @@
 
 
 # 10. 참고문헌
-데이터 수집 방법 : 크롤링, 공공 data, Open API, UNWTO, UNODC
-환율 정보 기능 -> 한국수출입은행 Open API 사용
-국가 정보 -> 외교부 API 사용
-감염병 및 주의 사항 -> 해외 감염병 now 크롤링
-한국 관광 데이터 랩 : https://datalab.visitkorea.or.kr/datalab/portal/ts/getWldTursmStatsForm.do
-한국 수출입 은행 환율 API: https://www.data.go.kr/data/3068846/openapi.do
-날씨 API : https://openweathermap.org/api
-외교부 API : https://www.data.go.kr/data/15000830/openapi.do
-감염병 : http://xnnow-po7lf48dlsm0ya109f.kr/nqs/oidnow/main/index.do
-예산데이터 : https://hikersbay.com/?lang=ko || https://www.budgetyourtrip.com
-데이터 출처 : https://dataunodc.un.org/content/country-list 
-UN 데이터  : https://www.unwto.org/tourism-statistics/tourism-statistics-database
-40대는 국내여행, 20대는 해외여행 갔다. (2024.04.24/매일경제)
-2024년, 작년보다 해외여행 더 간다 (2024.02.01/트래블데일리)
-국내여행비의 8배 가까운데 해외여행 가는 이유는? (2023.12.27/컨슈머인사이트)
-5월 해외여행 송출객 전년 동기 대비 54% 증가(2024.06.04/뉴스와이어)
-2023-24 국내·해외 여행소비자 행태의 변화와 전망 (2024.01.29/컨슈머인사이트)
-‘월간 국내·해외 여행동향 보고(2023.12.27/이달의 토픽)
-“3박에 무려” 제주 여행비용 얼마나 올랐길래…“차라리 해외여행 가고 만다”(2023.11.16/매일경제)
-해외여행지 만족도, 일본 ‘쑥’ 미국 ‘뚝’…이유는?(2023.10.23/컨슈머인사이트)
+데이터 수집 방법 : 크롤링, 공공 data, Open API, UNWTO, UNODC <br>
+환율 정보 기능 -> 한국수출입은행 Open API 사용 <br>
+국가 정보 -> 외교부 API 사용 <br>
+감염병 및 주의 사항 -> 해외 감염병 now 크롤링 <br>
+한국 관광 데이터 랩 : https://datalab.visitkorea.or.kr/datalab/portal/ts/getWldTursmStatsForm.do <br>
+한국 수출입 은행 환율 API: https://www.data.go.kr/data/3068846/openapi.do <br>
+날씨 API : https://openweathermap.org/api <br>
+외교부 API : https://www.data.go.kr/data/15000830/openapi.do <br>
+감염병 : http://xnnow-po7lf48dlsm0ya109f.kr/nqs/oidnow/main/index.do <br>
+예산데이터 : https://hikersbay.com/?lang=ko || https://www.budgetyourtrip.com <br>
+데이터 출처 : https://dataunodc.un.org/content/country-list <br>
+UN 데이터  : https://www.unwto.org/tourism-statistics/tourism-statistics-database <br>
+40대는 국내여행, 20대는 해외여행 갔다. (2024.04.24/매일경제) <br>
+2024년, 작년보다 해외여행 더 간다 (2024.02.01/트래블데일리) <br>
+국내여행비의 8배 가까운데 해외여행 가는 이유는? (2023.12.27/컨슈머인사이트) <br>
+5월 해외여행 송출객 전년 동기 대비 54% 증가(2024.06.04/뉴스와이어) <br>
+2023-24 국내·해외 여행소비자 행태의 변화와 전망 (2024.01.29/컨슈머인사이트) <br>
+‘월간 국내·해외 여행동향 보고(2023.12.27/이달의 토픽) <br>
+“3박에 무려” 제주 여행비용 얼마나 올랐길래…“차라리 해외여행 가고 만다”(2023.11.16/매일경제)<br>
+해외여행지 만족도, 일본 ‘쑥’ 미국 ‘뚝’…이유는?(2023.10.23/컨슈머인사이트) <br>
 
 
   
