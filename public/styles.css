@@ -14,54 +14,8 @@ html, body {
   display: flex; /* 플렉스 박스 사용 */
 }
 
-/* 헤더 스타일 설정 */
-#header {
-  position: absolute; /* 절대 위치 설정 */
-  top: 10px; /* 상단에서 10px 떨어짐 */
-  left: 50%; /* 왼쪽에서 중앙에 배치 */
-  transform: translateX(-50%); /* 가로 중앙 정렬 */
-  z-index: 1000; /* 가장 앞에 위치하도록 z-index 설정 */
-}
 
-/* 기본 로고 이미지 스타일 설정 */
-#logo {
-  width: 50px; /* 로고의 기본 너비 설정 */
-  position: fixed; /* 고정 위치 설정 */
-  right: -600px; /* 기본 위치 설정 */
-  top: 141px; /* 기본 위치 설정 */
-}
 
-/* 창 너비가 1200px 이상일 때의 로고 위치 조정 */
-@media (min-width: 1200px) {
-  #logo {
-    right: -948px; /* 오른쪽 위치 조정 */
-    top: 141px; /* 상단 위치 조정 */
-  }
-}
-
-/* 창 너비가 992px 이상 1200px 미만일 때의 로고 위치 조정 */
-@media (min-width: 992px) and (max-width: 1199px) {
-  #logo {
-    right: -369px; /* 오른쪽 위치 조정 */
-    top: 141px; /* 상단 위치 조정 */
-  }
-}
-
-/* 창 너비가 768px 이상 992px 미만일 때의 로고 위치 조정 */
-@media (min-width: 768px) and (max-width: 991px) {
-  #logo {
-    right: -369px; /* 오른쪽 위치 조정 */
-    top: 141px; /* 상단 위치 조정 */
-  }
-}
-
-/* 창 너비가 768px 미만일 때의 로고 위치 조정 */
-@media (max-width: 767px) {
-  #logo {
-    right: -150px; /* 오른쪽 위치 조정 */
-    top: 120px; /* 상단 위치 조정 */
-  }
-}
 
 /* 사이드바 스타일 */
 #sidebar {
@@ -156,6 +110,8 @@ btn_around_filter {
   background: #0056b3; /* 배경색 설정 */
 }
 
+
+
 /* 추가 기능 버튼 컨테이너 스타일 */
 #buttonsContainer {
   position: absolute; /* 절대 위치로 설정 */
@@ -183,6 +139,24 @@ btn_around_filter {
 .image-button img {
   width: 50px; /* 너비를 50px로 설정 */
   height: 50px; /* 높이를 50px로 설정 */
+}
+
+.image-button2 {
+  position: relative; /* 상대 위치로 설정 */
+  display: block; /* 플렉스 박스 사용 */
+  align-items: center; /* 자식 요소 수직 중앙 정렬 */
+  justify-content: center; /* 자식 요소 가로 중앙 정렬 */
+  border: none; /* 테두리 없음 */
+  background-color: transparent; /* 버튼 배경을 투명하게 설정 */
+  padding: 0; /* 패딩 없음 */
+  cursor: pointer; /* 커서 설정 */
+  margin: 5px; /* 마진 설정 */
+}
+
+.image-button2 img {
+  width: 40px; /* 너비를 50px로 설정 */
+  height: 80px; /* 높이를 50px로 설정 */
+  display : block;
 }
 
 .button-text {
@@ -418,4 +392,3 @@ btn_around_filter {
 #sidebar h4 {
   font-weight: 700; /* 제목 글자 굵기 설정 (예: 중간 굵기) */
 }
-

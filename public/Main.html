@@ -13,7 +13,6 @@
   <script defer src="budget.js"></script>
   <script defer src="currency.js"></script> 
   <script defer src="recommend.js"></script>
-  
   <script defer src="climate.js"></script>
   <script defer src="country.js"></script>
   <script defer src="emergency.js"></script>
@@ -23,10 +22,7 @@
   <script defer src="risk.js"></script>
 </head>
 <body>
-  <!-- 로고 이미지 추가 -->
-  <header id="header">
-    <img src="image\여정 로고.png" alt="로고 이미지" id="logo">
-  </header>
+
   <!-- 사이드바: 선택한 국가의 정보를 표시 -->
   <div id="sidebar" class="visible">
     <h2 id="countryName"></h2>
@@ -51,6 +47,10 @@
   <div id="map"></div>
   <!-- 추가 기능 버튼 컨테이너 -->
   <div id="buttonsContainer">
+      <!-- 로고 이미지 추가 -->
+    <button class="image-button2">
+    <img src="image\여정 로고.png" alt="로고 이미지" id="logo">
+    </button>
     <button class="image-button" onclick="showTravelAlerts()">
       <img src="image/싸이렌아이콘.png" alt="여행경보">
       <span class="button-text">여행경보</span>

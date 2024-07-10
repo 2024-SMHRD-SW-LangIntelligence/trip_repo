@@ -67,25 +67,29 @@
       switch (costLevel) {
         case 'Low':
           fillColor = 'palegreen';
+          fillOpacity = 0.7
           break;
         case 'Medium':
           fillColor = 'chartreuse';
+          fillOpacity = 0.7
           break;
         case 'High':
           fillColor = 'mediumseagreen';
+          fillOpacity = 0.7
           break;
         case 'Very High':
           fillColor = 'green';
+          fillOpacity =  0.7
           break;
         default:
           fillColor = 'white';
-          fillOpacity = 0
+          fillOpacity = 1
       }
 
       return {
         fillColor: fillColor,
         strokeWeight: 0.5,
-        fillOpacity: 0.7
+        fillOpacity: fillOpacity
       };
     });
   }

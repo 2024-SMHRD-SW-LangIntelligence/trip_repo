@@ -1,5 +1,5 @@
 function toggleRecommendInput() {
-    const countryName = prompt("국가명을 입력하세요 (예: South Korea, United States):");
+    const countryName = prompt("국가명을 입력하세요 (예: 캐나다, 독일):");
     if (countryName) {
         fetch('/recommend', {
             method: 'POST',
