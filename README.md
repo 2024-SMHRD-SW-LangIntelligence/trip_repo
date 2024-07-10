@@ -36,14 +36,15 @@
 
 
 # 3. 개발환경
-  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/8f072c57-f004-47ec-bc0e-4e4c63874e13)
+  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/d8c31876-3724-4f2e-871d-6bfee68c96f9)
+
 
 # 4. 유스케이스
   ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/5ff0e135-68d1-4e38-abcb-227ac4d104ec)
 
 
 # 5. 서비스아키텍처
-  ![Uploading image.png…]()
+  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/89203f9c-062f-45b8-a8e8-30a5bf71bb7e)
 
 
 # 6. ER 다이어그램
