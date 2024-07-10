@@ -63,8 +63,8 @@
 
       switch (riskLevel) {
         case 0:
-          fillColor = 'white';
-          fillOpacity = 0
+          fillColor = 'green';
+          fillOpacity = 0.5
           break;
         case 1:
           fillColor = 'dodgerblue';
@@ -80,10 +80,11 @@
           break;
         case 4:
           fillColor = "black"
-          fillOpacity = 0.8
-        default :
-          fillColor = "purple"
           fillOpacity = 0.5
+          break;
+        default :
+          fillColor = "white"
+          fillOpacity = 1
       }
 
       return {

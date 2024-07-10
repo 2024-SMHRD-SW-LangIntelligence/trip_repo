@@ -54,21 +54,5 @@ function displayInfectionData(infectionData) {
     });
 }
 
-// // GeoJson 데이터 클릭 이벤트 리스너 추가
-// map.data.addListener('click', function(event) {
-//     const countryISO = event.feature.getProperty('ISO'); // 여기에 ISO 코드를 사용해야 함
-//     showSidebarAndZoom(countryISO);
-//     document.getElementById('countryInfo').innerText = countryISO;
-//     fetchInfectionDataByCountry(countryISO);
-// });
-
-// // 검색 버튼 클릭 이벤트 리스너 추가
-// document.getElementById('searchButton').addEventListener('click', () => {
-//     const isoCode = document.getElementById('searchInput').value;
-//     showSidebarAndZoom(isoCode);
-//     document.getElementById('countryInfo').innerText = isoCode;
-//     fetchInfectionDataByCountry(isoCode);
-// });
-
 // 페이지 로드 후 감염병 데이터를 가져옴
 fetchInfectionData();

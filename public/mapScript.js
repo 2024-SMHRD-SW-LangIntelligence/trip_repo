@@ -107,7 +107,12 @@ function showSidebarAndZoom(isoCode, countryName) {
         bounds.extend(latlng);
       });
       map.fitBounds(bounds);
-      toggleSidebar();
+      // 사이드바가 보이지 않는 경우에만 토글
+      const sidebar = document.getElementById('sidebar');
+      if (!sidebar.classList.contains('visible')) {
+        toggleSidebar();
+      }
+
       document.getElementById('countryInfo').innerText = countryName;
     }
   });
