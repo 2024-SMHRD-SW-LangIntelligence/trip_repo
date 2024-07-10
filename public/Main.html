@@ -30,11 +30,30 @@
     <div id="sidebarflag"></div>
     <div id="sidebarcountry"></div>
     <div id="sidebarrisk"></div>
-    <div id="sidebarcurrency"></div>      
-    <div id="sidebarclimate"></div>
-    <div id="sidebarinfection"></div>
+    <details>
+      <summary>환율</summary>
+      <div id="sidebarcurrency" class="sidebar"></div>
+  </details>
+
+  <details>
+      <summary>기후</summary>
+      <div id="sidebarclimate" class="sidebar"></div>
+  </details>
+
+  <details>
+      <summary>감염병</summary>
+      <div id="sidebarinfection" class="sidebar"></div>
+  </details>
+
+  <details>
+      <summary>비자정보</summary>
+      <div id="sidebarvisa" class="sidebar"></div>
+  </details>
     <div id="sidebarvisa"></div>
-    <div id="sidebaremergency"></div>   
+    <details>
+      <summary>대사관</summary>
+      <ul id="sidebaremergency"></ul>
+    </details>  
   </div>
   <!-- 사이드바 토글 버튼 -->
   <button id="sidebarToggle" onclick="toggleSidebar()">메뉴</button>

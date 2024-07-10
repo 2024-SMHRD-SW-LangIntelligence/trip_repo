@@ -165,7 +165,7 @@ function initializeMap() {
 // Google Maps API 스크립트 로드
 function loadGoogleMapsScript() {
   const script = document.createElement('script');
-  script.src = 'https://maps.googleapis.com/maps/api/js?key=Your_Key&callback=initializeMap';
+  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDAceqhgqco1E6Dw29YqfEY_hjDB4SXEwQ&callback=initializeMap';
   script.defer = true;
   script.async = true;
   document.head.appendChild(script);
