@@ -148,6 +148,7 @@ function updateSidebarAndFetchData(isoCode, countryName) {
   showSidebarAndZoom(isoCode);
   document.getElementById('countryInfo').innerText = countryName;
   fetchCountryDataByCountry(isoCode);
+  fetchRiskDataByCountry(isoCode);
   fetchCurrencyDataByCountry(countryName);
   fetchClimateDataByCountry(isoCode);
   fetchEmergencyDataByCountry(isoCode);
