@@ -65,8 +65,8 @@
   ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/2da1587c-1e84-4b72-b676-1b1c481d7046)
 
 # 8. 팀원 단위 업무분담
-
-  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/c37c8a2e-d068-497a-9d33-56c031daf79c)
+  
+  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/676151c2-d9ec-4069-8133-fd69b2537382)
 
 # 9. 시연영상
 
