@@ -36,13 +36,16 @@
 
 
 # 3. 개발환경
-  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/8f072c57-f004-47ec-bc0e-4e4c63874e13)
+  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/d8c31876-3724-4f2e-871d-6bfee68c96f9)
+
 
 # 4. 유스케이스
-  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/8332065f-f8fe-430c-93e1-36f5eda51bb5)
+  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/5ff0e135-68d1-4e38-abcb-227ac4d104ec)
+
 
 # 5. 서비스아키텍처
-  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/4444cdc4-d346-4577-981b-c32ea0b1d015)
+  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/89203f9c-062f-45b8-a8e8-30a5bf71bb7e)
+
 
 # 6. ER 다이어그램
   ![ER 다이어그램](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/86a0ce0e-9064-4dee-86bd-4272d51013db)
@@ -62,8 +65,8 @@
   ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/2da1587c-1e84-4b72-b676-1b1c481d7046)
 
 # 8. 팀원 단위 업무분담
-
-  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/c37c8a2e-d068-497a-9d33-56c031daf79c)
+  
+  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/676151c2-d9ec-4069-8133-fd69b2537382)
 
 # 9. 시연영상
 
