@@ -39,10 +39,12 @@
   ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/8f072c57-f004-47ec-bc0e-4e4c63874e13)
 
 # 4. 유스케이스
-  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/8332065f-f8fe-430c-93e1-36f5eda51bb5)
+  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/5ff0e135-68d1-4e38-abcb-227ac4d104ec)
+
 
 # 5. 서비스아키텍처
-  ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/4444cdc4-d346-4577-981b-c32ea0b1d015)
+  ![Uploading image.png…]()
+
 
 # 6. ER 다이어그램
   ![ER 다이어그램](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/86a0ce0e-9064-4dee-86bd-4272d51013db)
