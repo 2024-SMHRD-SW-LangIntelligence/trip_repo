@@ -69,7 +69,7 @@
   ![image](https://github.com/2024-SW-LangIntelligence/trip_repo/assets/51393469/676151c2-d9ec-4069-8133-fd69b2537382)
 
 # 9. 시연영상
-
+  https://youtu.be/YeZ4d_rPSXg
 
 
 # 10. 참고문헌
